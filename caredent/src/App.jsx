@@ -401,6 +401,33 @@ const CSS_STYLES = `
     position: relative;
     overflow: hidden;
     border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .service-card.compact {
+    padding: 1.5rem;
+  }
+
+  .service-card.highlighted {
+    background: white;
+    border-color: var(--secondary);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .service-card.highlighted::after {
+    content: 'Specialised';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--secondary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    z-index: 2;
   }
 
   .service-card::before {
@@ -970,10 +997,22 @@ const Hero = () => (
 
 const Services = () => {
   const services = [
-    { title: "General Dentistry", desc: "Routine checkups, cleanings, and preventative care.", icon: <Icons.Tooth /> },
-    { title: "Teeth Whitening", desc: "Professional brightening treatments for a radiant smile.", icon: <Icons.Sparkles /> },
-    { title: "Orthodontics", desc: "Modern alignment solutions including Invisalign.", icon: <Icons.Activity /> },
-    { title: "Dental Implants", desc: "Permanent, natural-looking tooth replacements.", icon: <Icons.Tooth /> },
+    { title: "Dental Scaling", desc: "Professional plaque and tartar removal.", icon: <Icons.Activity /> },
+    { title: "Deep Cleaning", desc: "Advanced gum health treatment.", icon: <Icons.CheckCircle /> },
+    { title: "Tooth Filling", desc: "Restore decayed teeth efficiently.", icon: <Icons.Sparkles /> },
+    { title: "Root Canal Treatment", desc: "Painless pulp therapy with Post & Core.", icon: <Icons.Activity />, highlighted: true },
+    { title: "Laser Surgery", desc: "Bloodless and painless advanced surgery.", icon: <Icons.Sparkles />, compact: true, highlighted: true },
+    { title: "Flap Surgery", desc: "Specialised periodontal care.", icon: <Icons.Activity /> },
+    { title: "Esthetic Gum Surgery", desc: "Surgical gum line enhancement.", icon: <Icons.Sparkles />, compact: true },
+    { title: "Smile Designing", desc: "Complete cosmetic transformation.", icon: <Icons.Sparkles />, compact: true },
+    { title: "Tooth Jewelry", desc: "Add a sparkle to your beautiful smile.", icon: <Icons.Sparkles />, compact: true },
+    { title: "Orthodontic Treatment", desc: "Expert teeth alignment solutions.", icon: <Icons.Activity /> },
+    { title: "Partial Denture", desc: "Removable tooth replacement solutions.", icon: <Icons.Tooth /> },
+    { title: "Complete Denture", desc: "Full arch restoration for comfort.", icon: <Icons.Tooth /> },
+    { title: "Dental Crowns", desc: "Basic to advanced crown restorations.", icon: <Icons.Tooth />, highlighted: true },
+    { title: "Child Care Dentistry", desc: "Gentle dental care for the little ones.", icon: <Icons.Tooth /> },
+    { title: "Extraction", desc: "Safe and comfortable tooth removal.", icon: <Icons.CheckCircle /> },
+    { title: "Impaction", desc: "Expert surgical removal of impacted teeth.", icon: <Icons.Activity /> },
   ];
 
   return (
@@ -982,14 +1021,14 @@ const Services = () => {
         <div className="section-header">
           <div className="badge">Our Services</div>
           <h2>Comprehensive Dental Care</h2>
-          <p>We offer a wide range of services to ensure your dental health is in the best possible condition.</p>
+          <p>We offer a wide range of specialised services to ensure your dental health is in the best possible condition.</p>
         </div>
         <div className="services-grid">
           {services.map((s, i) => (
-            <div key={i} className="service-card">
-              <div className="service-icon">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
+            <div key={i} className={`service-card ${s.compact ? 'compact' : ''} ${s.highlighted ? 'highlighted' : ''}`}>
+              <div className="service-icon" style={s.compact ? { width: '3rem', height: '3rem', marginBottom: '1rem' } : {}}>{s.icon}</div>
+              <h3 style={s.compact ? { fontSize: '1.1rem', marginBottom: '0.5rem' } : {}}>{s.title}</h3>
+              <p style={s.compact ? { fontSize: '0.85rem' } : {}}>{s.desc}</p>
             </div>
           ))}
         </div>
