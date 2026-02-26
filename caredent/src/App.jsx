@@ -58,6 +58,8 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
   body, html {
     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMicgdmlld0JveD0nMCAwIDMyIDMyJz48cGF0aCBkPSdNOCwgOEM4LDQgMTIsNCAxNiw2QzIwLDQgMjQsNCAyNCw4TDI0LDE2QzI0LDIyIDIwLDI2IDE4LDMwTDE0LDMwQzEyLDI2IDgsMjIgOCwxNlovJyBmaWxsPSd3aGl0ZScgc3Ryb2tlPScjMEVBNUU5JyBzdHJva2Utd2lkdGg9JzInLz48L3N2Zz4=") 16 16, auto !important;
   }
