@@ -462,7 +462,7 @@ const CSS_STYLES = `
   .doctor-img {
     height: 400px;
     background-color: #E2E8F0;
-    background-image: url('/doctorphoto.webp');
+    background-image: url('doctorphoto.webp');
     background-size: cover;
     background-position: center;
   }
@@ -994,14 +994,12 @@ const Team = () => (
 
 const Testimonials = () => {
   const reviews = [
-    { name: "Karthik R.", rating: 5, date: "2 weeks ago", text: "Dr. Renuka Devy is exceptional! Extremely professional and the clinic is spotless. My implant surgery went perfectly smooth." },
-    { name: "Priya M.", rating: 5, date: "1 month ago", text: "Best dental care I've experienced. They are very patient, explain everything clearly, and made sure I felt no pain during the procedure." },
-    { name: "Arun Kumar", rating: 5, date: "3 months ago", text: "Highly recommend Srinivasan Toothz Care. They use the latest equipment and the staff is incredibly polite and helpful." },
-    { name: "Sangeetha V.", rating: 5, date: "4 months ago", text: "Got my teeth whitening done here. The results were fantastic and the doctor's approach was very comforting." },
-    { name: "Bala Murugan", rating: 5, date: "5 months ago", text: "Very transparent with the treatment plan and pricing. The precision with which the doctor works is commendable." },
-    { name: "Raghav S.", rating: 5, date: "6 months ago", text: "Dr. Devy is the best periodontist in town! Solved my gum issues with a very smooth treatment process." },
-    { name: "Deepa N.", rating: 5, date: "1 year ago", text: "My entire family visits Srinivasan Toothz Care now. Excellent environment and very professional handle of all dental needs." },
-    { name: "Vivek", rating: 5, date: "1 year ago", text: "No more fear of dentists! The procedure was totally painless and the results are amazing. Very reasonable prices too." }
+    { name: "Dr Shanmugapriya", rating: 5, date: "10 months ago", text: "Very talented and kind doctor… treatment provided with affordable price…comfortable to visit in all weekends…Thank you so much Dr. Renuka Devi ❤️…" },
+    { name: "Suppriya Ayyappan", rating: 5, date: "11 months ago", text: "Best clinic and treatment provided is very good...👍🏻" },
+    { name: "ganesh manikandan", rating: 5, date: "a year ago", text: "Treatment was very good, excellent service, Good patient care 👍 👍" },
+    { name: "ajith karan", rating: 5, date: "a year ago", text: "Treatment was very good, homely environment excellent service and painless treatment experience" },
+    { name: "Abdur Rahman", rating: 5, date: "a year ago", text: "She was very intersting and geniune in way she explain the treatment protocol to the patient" },
+    { name: "naren dran", rating: 5, date: "a year ago", text: "Affordable dental clinic, patient friendly doctor, had a positive vibe" }
   ];
 
   const scrollItems = [...reviews, ...reviews]; // Duplicate for seamless infinite scroll
@@ -1070,7 +1068,7 @@ const BookingAndLocation = () => {
                 <div className="contact-icon"><Icons.MapPin /></div>
                 <div className="contact-text">
                   <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Location</h4>
-                  <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR - 609 607</p>
+                  <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
                 </div>
               </li>
               <li className="contact-item">
@@ -1091,8 +1089,8 @@ const BookingAndLocation = () => {
 
             <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '200px' }}>
               <iframe
-                src="https://maps.google.com/maps?q=10.925002088726563,79.78859868384916&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
               </iframe>
             </div>
           </div>
