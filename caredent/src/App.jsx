@@ -1008,7 +1008,7 @@ const Services = () => {
     { title: "Tooth Filling", desc: "Restore decayed teeth efficiently.", icon: <Icons.Sparkles /> },
     { title: "Root Canal Treatment", desc: "Painless pulp therapy with Post & Core.", icon: <Icons.Activity /> },
     { title: "Laser Surgery", desc: "Bloodless and painless advanced surgery.", icon: <Icons.Sparkles />, highlighted: true },
-    { title: "Flap Surgery", desc: "Specialised periodontal care.", icon: <Icons.Activity /> },
+    { title: "Flap Surgery", desc: "Specialised periodontal care.", icon: <Icons.Activity />, highlighted: true },
     { title: "Esthetic Gum Surgery", desc: "Surgical gum line enhancement.", icon: <Icons.Sparkles />, highlighted: true },
     { title: "Smile Designing", desc: "Complete cosmetic transformation.", icon: <Icons.Sparkles />, highlighted: true },
     { title: "Tooth Jewelry", desc: "Add a sparkle to your beautiful smile.", icon: <Icons.Sparkles />, highlighted: true },
@@ -1252,7 +1252,10 @@ const Footer = () => (
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Srinivasan Toothz Care. All Rights Reserved.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <p>&copy; {new Date().getFullYear()} Srinivasan Toothz Care. All Rights Reserved.</p>
+          <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>This website was designed and developed by SP.</p>
+        </div>
         <p>Dr. T.Renuka Devy, MDS.</p>
       </div>
     </div>
