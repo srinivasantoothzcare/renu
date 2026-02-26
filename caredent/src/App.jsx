@@ -58,7 +58,7 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M16 4C12 4 9 5.5 8 9V17C8 21 10 25 13 27L14 31H18L19 27C22 25 24 21 24 17V9C24 5.5 20 4 16 4Z' fill='white' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 10C12 10 13 8 16 8C19 8 20 10 20 10' stroke='%23e2e8f0' stroke-width='1' fill='none'/></svg>") 16 16, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M16 4C12 4 9 5.5 8 9L8 15C8 20 10 24 13 26L14 30H18L19 26C22 24 24 20 24 16L24 9C24 5.5 20 4 16 4Z' fill='white' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 10C12 10 13 8 16 8C19 8 20 10 20 10' stroke='%23e2e8f0' stroke-width='1' fill='none'/></svg>") 16 16, auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -389,8 +389,8 @@ const CSS_STYLES = `
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
 
   .service-card {
@@ -1025,10 +1025,10 @@ const Services = () => {
         </div>
         <div className="services-grid">
           {services.map((s, i) => (
-            <div key={i} className={`service-card ${s.compact ? 'compact' : ''} ${s.highlighted ? 'highlighted' : ''}`}>
-              <div className="service-icon" style={s.compact ? { width: '3rem', height: '3rem', marginBottom: '1rem' } : {}}>{s.icon}</div>
-              <h3 style={s.compact ? { fontSize: '1.1rem', marginBottom: '0.5rem' } : {}}>{s.title}</h3>
-              <p style={s.compact ? { fontSize: '0.85rem' } : {}}>{s.desc}</p>
+            <div key={i} className={`service-card compact ${s.highlighted ? 'highlighted' : ''}`}>
+              <div className="service-icon" style={{ width: '3rem', height: '3rem', marginBottom: '1rem' }}>{s.icon}</div>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>{s.title}</h3>
+              <p style={{ fontSize: '0.85rem' }}>{s.desc}</p>
             </div>
           ))}
         </div>
