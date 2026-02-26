@@ -909,8 +909,10 @@ const Hero = () => (
           <a href="#services" className="btn btn-outline">Explore Services</a>
         </div>
       </div>
-      <div className="hero-image-wrapper">
-        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Modern Dental Clinic" />
+      <div style={{ position: 'relative' }}>
+        <div className="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Modern Dental Clinic" />
+        </div>
         <div className="floating-card">
           <Icons.CheckCircle />
           <div>
