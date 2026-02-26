@@ -58,7 +58,7 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M16 4C12 4 9 5.5 8 9L8 15C8 20 10 24 13 26L14 30H18L19 26C22 24 24 20 24 16L24 9C24 5.5 20 4 16 4Z' fill='white' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 10C12 10 13 8 16 8C19 8 20 10 20 10' stroke='%23e2e8f0' stroke-width='1' fill='none'/></svg>") 16 16, auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMicgdmlld0JveD0nMCAwIDMyIDMyJz48cGF0aCBkPSdNMTYgNEMxMiA0IDkgNS41IDggOUw4IDE1QzggMjAgMTAgMjQgMTMgMjZMMTQgMzBIMThMMTkgMjZDMjIgMjQgMjQgMjAgMjQgMTZMMjQgOUMyNCA1LjUgMjAgNCAxNiA0WicgZmlsbD0nd2hpdGUnIHN0cm9rZT0nIzBlYTVlOScgc3Ryb2tlLXdpZHRoPScxLjUnLz48cGF0aCBkPSdNMTIgMTBDMTIgMTAgMTMgOCAxNiA4QzE5IDggMjAgMTAgMjAgMTAnIHN0cm9rZT0nI2UyZThmMCcgc3Ryb2tlLXdpZHRoPScxJyBmaWxsPSdub25lJy8+PC9zdmc+") 16 16, auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -1000,16 +1000,16 @@ const Services = () => {
     { title: "Dental Scaling", desc: "Professional plaque and tartar removal.", icon: <Icons.Activity /> },
     { title: "Deep Cleaning", desc: "Advanced gum health treatment.", icon: <Icons.CheckCircle /> },
     { title: "Tooth Filling", desc: "Restore decayed teeth efficiently.", icon: <Icons.Sparkles /> },
-    { title: "Root Canal Treatment", desc: "Painless pulp therapy with Post & Core.", icon: <Icons.Activity />, highlighted: true },
-    { title: "Laser Surgery", desc: "Bloodless and painless advanced surgery.", icon: <Icons.Sparkles />, compact: true, highlighted: true },
+    { title: "Root Canal Treatment", desc: "Painless pulp therapy with Post & Core.", icon: <Icons.Activity /> },
+    { title: "Laser Surgery", desc: "Bloodless and painless advanced surgery.", icon: <Icons.Sparkles />, highlighted: true },
     { title: "Flap Surgery", desc: "Specialised periodontal care.", icon: <Icons.Activity /> },
-    { title: "Esthetic Gum Surgery", desc: "Surgical gum line enhancement.", icon: <Icons.Sparkles />, compact: true },
-    { title: "Smile Designing", desc: "Complete cosmetic transformation.", icon: <Icons.Sparkles />, compact: true },
-    { title: "Tooth Jewelry", desc: "Add a sparkle to your beautiful smile.", icon: <Icons.Sparkles />, compact: true },
+    { title: "Esthetic Gum Surgery", desc: "Surgical gum line enhancement.", icon: <Icons.Sparkles />, highlighted: true },
+    { title: "Smile Designing", desc: "Complete cosmetic transformation.", icon: <Icons.Sparkles />, highlighted: true },
+    { title: "Tooth Jewelry", desc: "Add a sparkle to your beautiful smile.", icon: <Icons.Sparkles />, highlighted: true },
     { title: "Orthodontic Treatment", desc: "Expert teeth alignment solutions.", icon: <Icons.Activity /> },
     { title: "Partial Denture", desc: "Removable tooth replacement solutions.", icon: <Icons.Tooth /> },
     { title: "Complete Denture", desc: "Full arch restoration for comfort.", icon: <Icons.Tooth /> },
-    { title: "Dental Crowns", desc: "Basic to advanced crown restorations.", icon: <Icons.Tooth />, highlighted: true },
+    { title: "Dental Crowns", desc: "Basic to advanced crown restorations.", icon: <Icons.Tooth /> },
     { title: "Child Care Dentistry", desc: "Gentle dental care for the little ones.", icon: <Icons.Tooth /> },
     { title: "Extraction", desc: "Safe and comfortable tooth removal.", icon: <Icons.CheckCircle /> },
     { title: "Impaction", desc: "Expert surgical removal of impacted teeth.", icon: <Icons.Activity /> },
