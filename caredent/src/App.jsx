@@ -58,7 +58,7 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><linearGradient id='toothGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1' /><stop offset='100%25' style='stop-color:%23e0f2fe;stop-opacity:1' /></linearGradient></defs><path d='M16 2C12 2 8 3.5 8 7V16C8 20 10 24 13 26L14 30H18L19 26C22 24 24 20 24 16V7C24 3.5 20 2 16 2Z' fill='url(%23toothGrad)' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 8C12 8 13 6 16 6C19 6 20 8 20 8' stroke='%23bae6fd' stroke-width='1' fill='none'/><circle cx='24' cy='6' r='3' fill='white' opacity='0.8'/><path d='M22 6L26 6M24 4L24 8' stroke='%23FDE047' stroke-width='1.5' stroke-linecap='round'/></svg>") 16 16, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M16 4C12 4 9 5.5 8 9V17C8 21 10 25 13 27L14 31H18L19 27C22 25 24 21 24 17V9C24 5.5 20 4 16 4Z' fill='white' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 10C12 10 13 8 16 8C19 8 20 10 20 10' stroke='%23e2e8f0' stroke-width='1' fill='none'/></svg>") 16 16, auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -252,6 +252,23 @@ const CSS_STYLES = `
     .hero-actions .btn {
       width: 100%;
     }
+    nav {
+      padding: 0.5rem 0.75rem 0.5rem 1rem;
+    }
+    .logo {
+      font-size: 1.2rem;
+    }
+    nav .btn-primary {
+      padding: 0.5rem 0.75rem !important;
+      font-size: 0.8rem !important;
+    }
+  }
+
+  .booking-title {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--primary);
   }
 
   /* --- HERO SECTION --- */
@@ -1125,7 +1142,7 @@ const BookingAndLocation = () => {
 
           {/* Right Side: Form */}
           <div className="booking-form">
-            <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Book an Appointment</h3>
+            <h3 className="booking-title">Book an Appointment</h3>
             <p style={{ marginBottom: '2rem' }}>We will get back to you to confirm your appointment details.</p>
 
             {submitted ? (
