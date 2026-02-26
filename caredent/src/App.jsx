@@ -460,9 +460,9 @@ const CSS_STYLES = `
   }
 
   .doctor-img {
-    height: 300px;
+    height: 400px;
     background-color: #E2E8F0;
-    background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800');
+    background-image: url('/doctorphoto.webp');
     background-size: cover;
     background-position: center;
   }
