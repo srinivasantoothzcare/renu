@@ -58,7 +58,7 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%230ea5e9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 12c.5 0 1 .5 1 1v1c0 1 1 2 2 2h4c1 0 2-1 2-2v-1c0-.5.5-1 1-1'/><path d='M15 12h.01'/><path d='M9 12h.01'/><path d='M12 21c-5 0-9-1.5-9-5V7c0-1.5 1-3 3-3s3 1 3 3v2c0 1 1 2 3 2s3-1 3-2V7c0-2 1-3 3-3s3 1.5 3 3v9c0 3.5-4 5-9 5Z'/><path d='M19 4l1 1'/><path d='M21 2l1 1'/></svg>") 16 16, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><linearGradient id='toothGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23ffffff;stop-opacity:1' /><stop offset='100%25' style='stop-color:%23e0f2fe;stop-opacity:1' /></linearGradient></defs><path d='M16 2C12 2 8 3.5 8 7V16C8 20 10 24 13 26L14 30H18L19 26C22 24 24 20 24 16V7C24 3.5 20 2 16 2Z' fill='url(%23toothGrad)' stroke='%230ea5e9' stroke-width='1.5'/><path d='M12 8C12 8 13 6 16 6C19 6 20 8 20 8' stroke='%23bae6fd' stroke-width='1' fill='none'/><circle cx='24' cy='6' r='3' fill='white' opacity='0.8'/><path d='M22 6L26 6M24 4L24 8' stroke='%23FDE047' stroke-width='1.5' stroke-linecap='round'/></svg>") 16 16, auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -211,6 +211,47 @@ const CSS_STYLES = `
 
   .nav-links a:hover {
     color: var(--secondary);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+      order: 3;
+    }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-filter);
+      flex-direction: column;
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      margin-top: 1rem;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-xl);
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .hero-actions .btn {
+      width: 100%;
+    }
   }
 
   /* --- HERO SECTION --- */
@@ -786,7 +827,12 @@ const CSS_STYLES = `
       justify-content: center;
     }
     .floating-card {
-      display: none;
+      position: relative;
+      bottom: auto;
+      left: auto;
+      margin: 2rem auto 0;
+      width: fit-content;
+      animation: none;
     }
     .hero-image-wrapper {
       max-height: 500px;
@@ -875,310 +921,32 @@ const Icons = {
  * COMPONENTS
  */
 
-const Navbar = () => (
-  <header className="navbar-wrapper">
-    <nav>
-      <a href="#" className="logo">
-        <Icons.Tooth />
-        <span>Srinivasan Toothz Care</span>
-      </a>
-      <div className="nav-links">
-        <a href="#services">Services</a>
-        <a href="#team">Our Team</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div>
-        <a href="#contact" className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
-          Book Appointment
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <header className="navbar-wrapper">
+      <nav>
+        <a href="#" className="logo">
+          <Icons.Tooth />
+          <span>Srinivasan Toothz Care</span>
         </a>
-      </div>
-    </nav>
-  </header>
-);
-
-const Hero = () => (
-  <section className="hero">
-    <div className="container hero-content">
-      <div className="hero-text">
-        <div className="badge">
-          <Icons.Sparkles /> Specialised Dental Clinic
+        <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+          {isOpen ? "✕" : "☰"}
+        </button>
+        <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+          <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
+          <a href="#team" onClick={() => setIsOpen(false)}>Our Team</a>
+          <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
         </div>
-        <h1>Brighten Your <span>Smile</span> Every Day</h1>
-        <p>Experience world-class dental services in a comfortable, modern environment. Led by Dr. T.Renuka Devy, MDS. (Periodontist & Implantologist), we prioritize your health and confidence.</p>
-        <div className="hero-actions">
-          <a href="#contact" className="btn btn-primary">Book an Appointment</a>
-          <a href="#services" className="btn btn-outline">Explore Services</a>
-        </div>
-      </div>
-      <div style={{ position: 'relative' }}>
-        <div className="hero-image-wrapper">
-          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Modern Dental Clinic" />
-        </div>
-        <div className="floating-card">
-          <Icons.CheckCircle />
-          <div>
-            <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)', lineHeight: 1 }}>1000+</div>
-            <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Happy Patients</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Services = () => {
-  const services = [
-    { title: "General Dentistry", desc: "Routine checkups, cleanings, and preventative care.", icon: <Icons.Tooth /> },
-    { title: "Teeth Whitening", desc: "Professional brightening treatments for a radiant smile.", icon: <Icons.Sparkles /> },
-    { title: "Orthodontics", desc: "Modern alignment solutions including Invisalign.", icon: <Icons.Activity /> },
-    { title: "Dental Implants", desc: "Permanent, natural-looking tooth replacements.", icon: <Icons.Tooth /> },
-  ];
-
-  return (
-    <section id="services" className="services">
-      <div className="container">
-        <div className="section-header">
-          <div className="badge">Our Services</div>
-          <h2>Comprehensive Dental Care</h2>
-          <p>We offer a wide range of services to ensure your dental health is in the best possible condition.</p>
-        </div>
-        <div className="services-grid">
-          {services.map((s, i) => (
-            <div key={i} className="service-card">
-              <div className="service-icon">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const CtaStrip = () => (
-  <div className="container">
-    <div className="cta-strip">
-      <div className="container">
-        <div>
-          <h2>Need urgent dental care?</h2>
-          <p>Our emergency dentists are ready to help you.</p>
-        </div>
-        <a href="#contact" className="btn btn-secondary" style={{ backgroundColor: 'white', color: 'var(--primary)' }}>
-          Contact Us Now
-        </a>
-      </div>
-    </div>
-  </div>
-);
-
-const Team = () => (
-  <section id="team" className="team">
-    <div className="container">
-      <div className="section-header">
-        <div className="badge">Our Expert</div>
-        <h2>Meet Specialized Dentist</h2>
-        <p>Passionate about giving you the best smile possible.</p>
-      </div>
-      <div className="team-grid">
-        <div className="doctor-card">
-          {/* Using a placeholder for the doctor image - replace the URL if you have a real image */}
-          <div className="doctor-img"></div>
-          <div className="doctor-info">
-            <h3>Dr. T.Renuka Devy, MDS.</h3>
-            <span>Periodontist & Implantologist</span>
-            <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>Dedicated to providing advanced periodontal care and state-of-the-art dental implants.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Testimonials = () => {
-  const reviews = [
-    { name: "Dr Shanmugapriya", rating: 5, date: "10 months ago", text: "Very talented and kind doctor… treatment provided with affordable price…comfortable to visit in all weekends…Thank you so much Dr. Renuka Devi ❤️…" },
-    { name: "Suppriya Ayyappan", rating: 5, date: "11 months ago", text: "Best clinic and treatment provided is very good...👍🏻" },
-    { name: "ganesh manikandan", rating: 5, date: "a year ago", text: "Treatment was very good, excellent service, Good patient care 👍 👍" },
-    { name: "ajith karan", rating: 5, date: "a year ago", text: "Treatment was very good, homely environment excellent service and painless treatment experience" },
-    { name: "Abdur Rahman", rating: 5, date: "a year ago", text: "She was very intersting and geniune in way she explain the treatment protocol to the patient" },
-    { name: "naren dran", rating: 5, date: "a year ago", text: "Affordable dental clinic, patient friendly doctor, had a positive vibe" }
-  ];
-
-  const scrollItems = [...reviews, ...reviews]; // Duplicate for seamless infinite scroll
-
-  return (
-    <section id="testimonials" className="testimonials">
-      <div className="container">
-        <div className="testimonial-header">
-          <div className="badge">Testimonials</div>
-          <h2>What Our Patients Say</h2>
-          <p style={{ maxWidth: '600px', margin: '1rem auto 0' }}>Don't just take our word for it. Here is some feedback from our wonderful patients.</p>
-        </div>
-      </div>
-
-      {/* Full width container for the horizontal scroll */}
-      <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
-        <div className="testimonials-wrapper">
-          <div className="testimonial-carousel">
-            {scrollItems.map((r, i) => (
-              <div key={i} className="testimonial-card-v2">
-                <div>
-                  <div className="stars">
-                    {[...Array(r.rating)].map((_, idx) => <Icons.Star key={idx} />)}
-                  </div>
-                  <p className="testimonial-text">"{r.text}"</p>
-                </div>
-                <div className="testimonial-author">
-                  <div className="author-avatar">
-                    {r.name.charAt(0)}
-                  </div>
-                  <div className="author-info">
-                    <h4>{r.name}</h4>
-                    <span>{r.date}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const BookingAndLocation = () => {
-  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General' });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.name && formData.phone) {
-      setSubmitted(true);
-    }
-  };
-
-  return (
-    <section id="contact" className="booking-section">
-      <div className="container">
-        <div className="booking-container">
-
-          {/* Left Side: Info & Map */}
-          <div className="booking-info">
-            <h3>Contact Details</h3>
-            <ul className="contact-list">
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.MapPin /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Location</h4>
-                  <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
-                </div>
-              </li>
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.Phone /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Phone</h4>
-                  <p>+91 95666 01261<br />+91 87781 44471</p>
-                </div>
-              </li>
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.Mail /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Email</h4>
-                  <p>srinivasantooothzcare@gmail.com</p>
-                </div>
-              </li>
-            </ul>
-
-            <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '200px' }}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
-                width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
-          </div>
-
-          {/* Right Side: Form */}
-          <div className="booking-form">
-            <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Book an Appointment</h3>
-            <p style={{ marginBottom: '2rem' }}>We will get back to you to confirm your appointment details.</p>
-
-            {submitted ? (
-              <div style={{ padding: '2rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '1rem', textAlign: 'center' }}>
-                <div style={{ color: 'var(--secondary)', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Icons.CheckCircle /></div>
-                <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Request Received!</h4>
-                <p>Thank you, {formData.name}. We will call you at {formData.phone} shortly.</p>
-                <button className="btn btn-outline" style={{ marginTop: '1.5rem' }} onClick={() => setSubmitted(false)}>Book Another</button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Full Name</label>
-                  <input type="text" className="form-control" placeholder="John Doe" required
-                    value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                </div>
-                <div className="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" className="form-control" placeholder="+91 00000 00000" required
-                    value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                </div>
-                <div className="form-group">
-                  <label>Service Required</label>
-                  <select className="form-control" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
-                    <option>General Checkup</option>
-                    <option>Teeth Whitening</option>
-                    <option>Implants</option>
-                    <option>Urgent Care</option>
-                  </select>
-                </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}>
-                  Submit Request
-                </button>
-              </form>
-            )}
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const Footer = () => (
-  <footer className="footer">
-    <div className="container">
-      <div className="footer-top">
-        <div className="footer-brand">
-          <a href="#" className="logo" style={{ color: 'white' }}>
-            <Icons.Tooth />
-            <span style={{ color: 'white' }}>Srinivasan Toothz Care</span>
+        <div style={{ order: 4 }}>
+          <a href="#contact" className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
+            Book now
           </a>
-          <p>Committed to dental excellence. Providing advanced, painless, and highly specialised dental treatments.</p>
         </div>
-        <div>
-          <h4 className="footer-title">Quick Links</h4>
-          <ul className="footer-links">
-            <li><a href="#services">Our Services</a></li>
-            <li><a href="#team">Our Expert</a></li>
-            <li><a href="#contact">Book Appointment</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="footer-title">Working Hours</h4>
-          <ul className="footer-links" style={{ color: '#94A3B8' }}>
-            <li>Mon - Fri: 8:00 AM - 6:00 PM</li>
-            <li>Saturday: 9:00 AM - 2:00 PM</li>
-            <li>Sunday: Closed</li>
-          </ul>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Srinivasan Toothz Care. All Rights Reserved.</p>
-        <p>Dr. T.Renuka Devy, MDS.</p>
-      </div>
-    </div>
-  </footer>
-);
+      </nav>
+    </header>
+  );
+};
 
 export default function App() {
   // Inject CSS on Mount
