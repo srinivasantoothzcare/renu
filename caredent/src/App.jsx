@@ -973,11 +973,14 @@ const Hero = () => (
           <Icons.Sparkles /> Specialised Dental Clinic
         </div>
         <h1>Brighten Your <span>Smile</span> Every Day</h1>
-        <p>Experience world-class dental services in a comfortable, modern environment. Led by Dr. T.Renuka Devy, MDS. (Periodontist & Implantologist), we prioritize your health and confidence.</p>
+        <p>Experience world-class dental services in a comfortable, modern environment. Led by Dr. T.Renuka Devy, MDS. (Periodontist, Implantologist & laser Specialist), we prioritize your health and confidence.</p>
         <div className="hero-actions">
           <a href="#contact" className="btn btn-primary">Book an Appointment</a>
           <a href="#services" className="btn btn-outline">Explore Services</a>
         </div>
+        <p style={{ marginTop: '2rem', fontStyle: 'italic', color: 'var(--secondary)', fontWeight: 600, fontSize: '1.1rem' }}>
+          "Dentistry isn’t expensive, Only your neglect is"
+        </p>
       </div>
       <div style={{ position: 'relative' }}>
         <div className="hero-image-wrapper">
@@ -1066,8 +1069,8 @@ const Team = () => (
           {/* Using a placeholder for the doctor image - replace the URL if you have a real image */}
           <div className="doctor-img"></div>
           <div className="doctor-info">
-            <h3>Dr. T.Renuka Devy, MDS.</h3>
-            <span>Periodontist & Implantologist</span>
+            <p>Dr. T.Renuka Devy, MDS.</p>
+            <span>Periodontist, Implantologist & laser Specialist</span>
             <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>Dedicated to providing advanced periodontal care and state-of-the-art dental implants.</p>
           </div>
         </div>
@@ -1242,14 +1245,6 @@ const Footer = () => (
             <li><a href="#services">Our Services</a></li>
             <li><a href="#team">Our Expert</a></li>
             <li><a href="#contact">Book Appointment</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="footer-title">Working Hours</h4>
-          <ul className="footer-links" style={{ color: '#94A3B8' }}>
-            <li>Mon - Fri: 8:00 AM - 6:00 PM</li>
-            <li>Saturday: 9:00 AM - 2:00 PM</li>
-            <li>Sunday: Closed</li>
           </ul>
         </div>
       </div>
