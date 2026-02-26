@@ -58,7 +58,8 @@ const CSS_STYLES = `
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMicgdmlld0JveD0nMCAwIDMyIDMyJz48cGF0aCBkPSdNMTYgNEMxMiA0IDkgNS41IDggOUw4IDE1QzggMjAgMTAgMjQgMTMgMjZMMTQgMzBIMThMMTkgMjZDMjIgMjQgMjQgMjAgMjQgMTZMMjQgOUMyNCA1LjUgMjAgNCAxNiA0WicgZmlsbD0nd2hpdGUnIHN0cm9rZT0nIzBlYTVlOScgc3Ryb2tlLXdpZHRoPScxLjUnLz48cGF0aCBkPSdNMTIgMTBDMTIgMTAgMTMgOCAxNiA4QzE5IDggMjAgMTAgMjAgMTAnIHN0cm9rZT0nI2UyZThmMCcgc3Ryb2tlLXdpZHRoPScxJyBmaWxsPSdub25lJy8+PC9zdmc+") 16 16, auto;
+  body, html {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMicgdmlld0JveD0nMCAwIDMyIDMyJz48cGF0aCBkPSdNOCwgOEM4LDQgMTIsNCAxNiw2QzIwLDQgMjQsNCAyNCw4TDI0LDE2QzI0LDIyIDIwLDI2IDE4LDMwTDE0LDMwQzEyLDI2IDgsMjIgOCwxNlovJyBmaWxsPSd3aGl0ZScgc3Ryb2tlPScjMEVBNUU5JyBzdHJva2Utd2lkdGg9JzInLz48L3N2Zz4=") 16 16, auto !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -989,7 +990,7 @@ const Hero = () => (
         <div className="floating-card">
           <Icons.CheckCircle />
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)', lineHeight: 1 }}>1000+</div>
+            <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)', lineHeight: 1 }}>250+</div>
             <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Happy Patients</div>
           </div>
         </div>
