@@ -443,7 +443,7 @@ const Hero = () => (
       <div className="hero-text">
         <span className="hero-tagline" style={{ lineHeight: '1.5' }}>
           Dr. T.Renuka Devy, MDS. | Periodontist & Implantologist<br />
-          Dental Implants* Specialist<br />
+          Dental Implants Specialist<br />
           Full mouth rehabilitation
         </span>
         <h1>Srinivasan Toothz Care</h1>
@@ -459,7 +459,7 @@ const Services = () => {
     { title: "General Dentistry", desc: "Routine checkups, cleanings, and preventative care for all ages.", icon: <Icons.Tooth /> },
     { title: "Teeth Whitening", desc: "Professional brightening treatments for a radiant, confident smile.", icon: <Icons.Sparkles /> },
     { title: "Orthodontics", desc: "Modern alignment solutions including Invisalign and traditional braces.", icon: <Icons.Activity /> },
-    { title: "Dental Implants*", desc: "Specialized permanent, natural-looking tooth replacements with high-tech precision.", icon: <Icons.Tooth /> },
+    { title: "Dental Implants", desc: "Specialized permanent, natural-looking tooth replacements with high-tech precision.", icon: <Icons.Tooth /> },
     { title: "Full Mouth Rehabilitation", desc: "Comprehensive restorative treatments to rebuild and restore your entire smile.", icon: <Icons.Activity /> },
     { title: "Emergency Care", desc: "Same-day urgent treatment for dental pain, accidents, or injuries.", icon: <Icons.Calendar /> }
   ];
@@ -626,7 +626,7 @@ const BookingForm = () => {
                   <option>General</option>
                   <option>Whitening</option>
                   <option>Orthodontics</option>
-                  <option>Implants*</option>
+                  <option>Implants</option>
                   <option>Rehabilitation</option>
                   <option>Emergency</option>
                 </select>
