@@ -977,6 +977,10 @@ const Hero = () => (
         </div>
         <h1>Brighten Your <span>Smile</span> Every Day</h1>
         <p>Experience world-class dental services in a comfortable, modern environment. Led by Dr. T.Renuka Devy, MDS. (Periodontist, Implantologist & laser Specialist), we prioritize your health and confidence.</p>
+        <p style={{ marginTop: '0.5rem', fontWeight: 600, color: 'var(--primary)', lineHeight: '1.5' }}>
+          Dental Implants* Specialist <br />
+          Full mouth rehabilitation
+        </p>
         <div className="hero-actions">
           <a href="#contact" className="btn btn-primary">Book an Appointment</a>
           <a href="#services" className="btn btn-outline">Explore Services</a>
@@ -1019,6 +1023,8 @@ const Services = () => {
     { title: "Child Care Dentistry", desc: "Gentle dental care for the little ones.", icon: <Icons.Tooth /> },
     { title: "Extraction", desc: "Safe and comfortable tooth removal.", icon: <Icons.CheckCircle /> },
     { title: "Impaction", desc: "Expert surgical removal of impacted teeth.", icon: <Icons.Activity /> },
+    { title: "Dental Implants*", desc: "Specialised permanent tooth replacements.", icon: <Icons.Tooth />, highlighted: true },
+    { title: "Full Mouth Rehabilitation", desc: "Comprehensive restorative treatments.", icon: <Icons.Activity />, highlighted: true },
   ];
 
   return (
@@ -1214,7 +1220,8 @@ const BookingAndLocation = () => {
                   <select className="form-control" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
                     <option>General Checkup</option>
                     <option>Teeth Whitening</option>
-                    <option>Implants</option>
+                    <option>Implants*</option>
+                    <option>Rehabilitation</option>
                     <option>Urgent Care</option>
                   </select>
                 </div>
