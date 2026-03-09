@@ -746,7 +746,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true);
-      const tooth = "\u{1F9B7}";
+      const tooth = String.fromCodePoint(0x1F9B7);
       const message = `${tooth} New Patient Details ${tooth}\n${tooth} Name: ${formData.name}\n${tooth} Age: ${formData.age}\n${tooth} Sex: ${formData.sex}\n${tooth} Address: ${formData.address}\n${tooth} Contact no: ${formData.contact_no}\n${tooth} Complaint: ${formData.complaint}\n${tooth} Previous Medical History: ${formData.medical_history || 'None'}\n${tooth} Previous Dental History: ${formData.dental_history || 'None'}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
