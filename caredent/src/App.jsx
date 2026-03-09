@@ -1368,44 +1368,46 @@ const BookingModal = ({ isOpen, onClose }) => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="contact" style={{ padding: '6rem 0', background: '#0f172a', color: 'white' }}>
+  <section id="contact" className="contact" style={{ padding: '6rem 0', background: 'var(--bg-main)' }}>
     <div className="container">
-      <div className="section-header">
-        <div className="badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}>Contact Us</div>
-        <h2 style={{ color: 'white' }}>Reach Out & Find Us</h2>
-        <p style={{ color: '#cbd5e1' }}>We are always here to help you smile with confidence.</p>
-      </div>
+      <div style={{ background: '#0f172a', borderRadius: 'var(--radius-xl)', padding: '4rem 2rem', boxShadow: 'var(--shadow-xl)', color: 'white' }}>
+        <div className="section-header">
+          <div className="badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}>Contact Us</div>
+          <h2 style={{ color: 'white' }}>Reach Out & Find Us</h2>
+          <p style={{ color: '#cbd5e1' }}>We are always here to help you smile with confidence.</p>
+        </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-        <ul className="contact-list" style={{ marginBottom: 0 }}>
-          <li className="contact-item" style={{ alignItems: 'center' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
-            <div className="contact-text">
-              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
-              <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
-            </div>
-          </li>
-          <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Phone /></div>
-            <div className="contact-text">
-              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Phone</h4>
-              <p style={{ color: '#cbd5e1' }}>+91 95666 01261<br />+91 87781 44471</p>
-            </div>
-          </li>
-          <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Mail /></div>
-            <div className="contact-text">
-              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Email</h4>
-              <p style={{ color: '#cbd5e1' }}>srinivasantooothzcare@gmail.com</p>
-            </div>
-          </li>
-        </ul>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+          <ul className="contact-list" style={{ marginBottom: 0 }}>
+            <li className="contact-item" style={{ alignItems: 'center' }}>
+              <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
+                <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+              </div>
+            </li>
+            <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
+              <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Phone /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Phone</h4>
+                <p style={{ color: '#cbd5e1' }}>+91 95666 01261<br />+91 87781 44471</p>
+              </div>
+            </li>
+            <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
+              <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Mail /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Email</h4>
+                <p style={{ color: '#cbd5e1' }}>srinivasantooothzcare@gmail.com</p>
+              </div>
+            </li>
+          </ul>
 
-        <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', height: '400px', boxShadow: 'var(--shadow-xl)' }}>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
-            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
-          </iframe>
+          <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', height: '400px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
+              width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
         </div>
       </div>
     </div>
