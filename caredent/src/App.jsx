@@ -1312,7 +1312,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   );
 };
 
-const Footer = () => (
+const Footer = ({ onBookClick }) => (
   <footer className="footer">
     <div className="container">
       <div className="footer-top">
