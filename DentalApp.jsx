@@ -769,7 +769,7 @@ const BookingModal = ({ isOpen, onClose }) => {
         try {
           const formParams = new FormData();
           Object.keys(formData).forEach(key => formParams.append(key, formData[key]));
-          formParams.append("timestamp", new Date().toISOString());
+          formParams.append("timestamp", new Date().toLocaleString('en-IN'));
 
           await fetch(SCRIPT_URL, {
             method: 'POST',
