@@ -909,6 +909,66 @@ const CSS_STYLES = `
       grid-template-columns: 1fr;
     }
   }
+
+  /* Booking Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open .modal-content {
+    transform: translateY(0);
+  }
+
+  .modal-close-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--text-main);
+    transition: background 0.3s;
+  }
+
+  .modal-close-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 `;
 
 /**
@@ -961,6 +1021,12 @@ const Icons = {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
+  ),
+  X: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
   )
 };
 
@@ -968,7 +1034,7 @@ const Icons = {
  * COMPONENTS
  */
 
-const Hero = () => (
+const Hero = ({ onBookClick }) => (
   <section className="hero">
     <div className="container hero-content">
       <div className="hero-text">
@@ -982,7 +1048,7 @@ const Hero = () => (
           Full mouth rehabilitation
         </p>
         <div className="hero-actions">
-          <a href="#contact" className="btn btn-primary">Book an Appointment</a>
+          <button onClick={onBookClick} className="btn btn-primary">Book an Appointment</button>
           <a href="#services" className="btn btn-outline">Explore Services</a>
         </div>
         <p style={{ marginTop: '2rem', fontStyle: 'italic', color: 'var(--secondary)', fontWeight: 600, fontSize: '1.1rem' }}>
@@ -1049,7 +1115,7 @@ const Services = () => {
   );
 };
 
-const CtaStrip = () => (
+const CtaStrip = ({ onBookClick }) => (
   <div className="container">
     <div className="cta-strip">
       <div className="container">
@@ -1057,9 +1123,9 @@ const CtaStrip = () => (
           <h2>Need urgent dental care?</h2>
           <p>Our emergency dentists are ready to help you.</p>
         </div>
-        <a href="#contact" className="btn btn-secondary" style={{ backgroundColor: 'white', color: 'var(--primary)' }}>
+        <button onClick={onBookClick} className="btn btn-secondary" style={{ backgroundColor: 'white', color: 'var(--primary)' }}>
           Contact Us Now
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -1140,9 +1206,16 @@ const Testimonials = () => {
   );
 };
 
-const BookingAndLocation = () => {
-  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General' });
+const BookingModal = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General Checkup' });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSubmitted(false);
+      setFormData({ name: '', phone: '', service: 'General Checkup' });
+    }
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -1152,91 +1225,92 @@ const BookingAndLocation = () => {
   };
 
   return (
-    <section id="contact" className="booking-section">
-      <div className="container">
-        <div className="booking-container">
+    <div className={`modal-overlay ${isOpen ? 'open' : ''}`} onClick={onClose}>
+      <div className="booking-container modal-content" onClick={e => e.stopPropagation()}>
+        <button className="modal-close-icon" onClick={onClose} aria-label="Close modal">
+          <Icons.X />
+        </button>
 
-          {/* Left Side: Info & Map */}
-          <div className="booking-info">
-            <h3>Contact Details</h3>
-            <ul className="contact-list">
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.MapPin /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Location</h4>
-                  <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
-                </div>
-              </li>
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.Phone /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Phone</h4>
-                  <p>+91 95666 01261<br />+91 87781 44471</p>
-                </div>
-              </li>
-              <li className="contact-item">
-                <div className="contact-icon"><Icons.Mail /></div>
-                <div className="contact-text">
-                  <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Email</h4>
-                  <p>srinivasantooothzcare@gmail.com</p>
-                </div>
-              </li>
-            </ul>
-
-            <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '200px' }}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
-                width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
-          </div>
-
-          {/* Right Side: Form */}
-          <div className="booking-form">
-            <h3 className="booking-title">Book an Appointment</h3>
-            <p style={{ marginBottom: '2rem' }}>We will get back to you to confirm your appointment details.</p>
-
-            {submitted ? (
-              <div style={{ padding: '2rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '1rem', textAlign: 'center' }}>
-                <div style={{ color: 'var(--secondary)', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Icons.CheckCircle /></div>
-                <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Request Received!</h4>
-                <p>Thank you, {formData.name}. We will call you at {formData.phone} shortly.</p>
-                <button className="btn btn-outline" style={{ marginTop: '1.5rem' }} onClick={() => setSubmitted(false)}>Book Another</button>
+        {/* Left Side: Info & Map */}
+        <div className="booking-info">
+          <h3>Contact Details</h3>
+          <ul className="contact-list">
+            <li className="contact-item">
+              <div className="contact-icon"><Icons.MapPin /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Location</h4>
+                <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Full Name</label>
-                  <input type="text" className="form-control" placeholder="John Doe" required
-                    value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                </div>
-                <div className="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" className="form-control" placeholder="+91 00000 00000" required
-                    value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                </div>
-                <div className="form-group">
-                  <label>Service Required</label>
-                  <select className="form-control" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
-                    <option>General Checkup</option>
-                    <option>Teeth Whitening</option>
-                    <option>Implants</option>
-                    <option>Rehabilitation</option>
-                    <option>Urgent Care</option>
-                  </select>
-                </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}>
-                  Submit Request
-                </button>
-              </form>
-            )}
-          </div>
+            </li>
+            <li className="contact-item">
+              <div className="contact-icon"><Icons.Phone /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Phone</h4>
+                <p>+91 95666 01261<br />+91 87781 44471</p>
+              </div>
+            </li>
+            <li className="contact-item">
+              <div className="contact-icon"><Icons.Mail /></div>
+              <div className="contact-text">
+                <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Email</h4>
+                <p>srinivasantooothzcare@gmail.com</p>
+              </div>
+            </li>
+          </ul>
 
+          <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '200px' }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
+              width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
         </div>
+
+        {/* Right Side: Form */}
+        <div className="booking-form">
+          <h3 className="booking-title">Book an Appointment</h3>
+          <p style={{ marginBottom: '2rem' }}>We will get back to you to confirm your appointment details.</p>
+
+          {submitted ? (
+            <div style={{ padding: '2rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '1rem', textAlign: 'center' }}>
+              <div style={{ color: 'var(--secondary)', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Icons.CheckCircle /></div>
+              <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Request Received!</h4>
+              <p>Thank you, {formData.name}. We will call you at {formData.phone} shortly.</p>
+              <button className="btn btn-outline" style={{ marginTop: '1.5rem' }} onClick={() => setSubmitted(false)}>Book Another</button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Full Name</label>
+                <input type="text" className="form-control" placeholder="John Doe" required
+                  value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label>Phone Number</label>
+                <input type="tel" className="form-control" placeholder="+91 00000 00000" required
+                  value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label>Service Required</label>
+                <select className="form-control" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
+                  <option>General Checkup</option>
+                  <option>Teeth Whitening</option>
+                  <option>Implants</option>
+                  <option>Rehabilitation</option>
+                  <option>Urgent Care</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}>
+                Submit Request
+              </button>
+            </form>
+          )}
+        </div>
+
       </div>
-    </section>
+    </div>
   );
-}
+};
 
 const Footer = () => (
   <footer className="footer">
@@ -1254,7 +1328,7 @@ const Footer = () => (
           <ul className="footer-links">
             <li><a href="#services">Our Services</a></li>
             <li><a href="#team">Our Expert</a></li>
-            <li><a href="#contact">Book Appointment</a></li>
+            <li><button onClick={onBookClick} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8', fontSize: '1rem', padding: 0, textAlign: 'left', fontFamily: 'inherit' }}>Book Appointment</button></li>
           </ul>
         </div>
       </div>
@@ -1269,7 +1343,7 @@ const Footer = () => (
   </footer>
 );
 
-const Navbar = () => {
+const Navbar = ({ onBookClick }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -1285,12 +1359,12 @@ const Navbar = () => {
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#team" onClick={() => setIsOpen(false)}>Our Team</a>
-          <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
+          <button onClick={() => { setIsOpen(false); onBookClick(); }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 500, color: 'var(--primary)', fontFamily: 'inherit' }}>Contact</button>
         </div>
         <div style={{ order: 4 }}>
-          <a href="#contact" className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
+          <button onClick={onBookClick} className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
             Book now
-          </a>
+          </button>
         </div>
       </nav>
     </header>
@@ -1298,6 +1372,8 @@ const Navbar = () => {
 };
 
 export default function App() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   // Inject CSS on Mount
   useEffect(() => {
     const styleTag = document.createElement("style");
@@ -1308,14 +1384,14 @@ export default function App() {
 
   return (
     <div>
-      <Navbar />
-      <Hero />
+      <Navbar onBookClick={() => setIsBookingOpen(true)} />
+      <Hero onBookClick={() => setIsBookingOpen(true)} />
       <Services />
-      <CtaStrip />
+      <CtaStrip onBookClick={() => setIsBookingOpen(true)} />
       <Team />
       <Testimonials />
-      <BookingAndLocation />
-      <Footer />
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <Footer onBookClick={() => setIsBookingOpen(true)} />
     </div>
   );
 }
