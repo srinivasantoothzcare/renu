@@ -1459,7 +1459,7 @@ const Navbar = ({ onBookClick }) => {
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#team" onClick={() => setIsOpen(false)}>Our Team</a>
-          <button onClick={() => { setIsOpen(false); onBookClick(); }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 500, color: 'var(--primary)', fontFamily: 'inherit' }}>Contact</button>
+          <a href="#contact" onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 500, color: 'var(--primary)', fontFamily: 'inherit' }}>Contact</a>
         </div>
         <div style={{ order: 4 }}>
           <button onClick={onBookClick} className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>

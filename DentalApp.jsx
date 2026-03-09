@@ -621,6 +621,7 @@ const Navbar = ({ onBookClick }) => (
       <div className="nav-links">
         <a href="#services">Services</a>
         <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
         <button onClick={onBookClick} className="cta-btn" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', border: 'none', cursor: 'pointer' }}>Book Now</button>
       </div>
     </div>
@@ -917,40 +918,40 @@ const BookingModal = ({ isOpen, onClose }) => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="contact" style={{ padding: '5rem 0', background: 'white' }}>
+  <section id="contact" className="contact" style={{ padding: '5rem 0', background: '#0f172a', color: 'white' }}>
     <div className="container">
       <div className="section-title">
-        <h2>Contact & Location</h2>
-        <p>Get in touch with us for your dental needs.</p>
+        <h2 style={{ color: 'white' }}>Contact & Location</h2>
+        <p style={{ color: '#cbd5e1' }}>Get in touch with us for your dental needs.</p>
       </div>
-      <div className="location-container">
+      <div className="location-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.MapPin /></div>
+            <div className="modal-info-icon" style={{ background: 'rgba(14, 165, 233, 0.1)', color: '#0ea5e9' }}><Icons.MapPin /></div>
             <div>
-              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Location</h4>
-              <p style={{ color: 'var(--text-muted)' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Location</h4>
+              <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
             </div>
           </div>
 
           <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.Phone /></div>
+            <div className="modal-info-icon" style={{ background: 'rgba(14, 165, 233, 0.1)', color: '#0ea5e9' }}><Icons.Phone /></div>
             <div>
-              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Phone</h4>
-              <p style={{ color: 'var(--text-muted)' }}>+91 95666 01261<br />+91 87781 44471</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Phone</h4>
+              <p style={{ color: '#cbd5e1' }}>+91 95666 01261<br />+91 87781 44471</p>
             </div>
           </div>
 
           <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.Mail /></div>
+            <div className="modal-info-icon" style={{ background: 'rgba(14, 165, 233, 0.1)', color: '#0ea5e9' }}><Icons.Mail /></div>
             <div>
-              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Email</h4>
-              <p style={{ color: 'var(--text-muted)' }}>srinivasantooothzcare@gmail.com</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem' }}>Email</h4>
+              <p style={{ color: '#cbd5e1' }}>srinivasantooothzcare@gmail.com</p>
             </div>
           </div>
         </div>
 
-        <div className="map-wrapper" style={{ height: '350px', position: 'relative' }}>
+        <div className="map-wrapper" style={{ height: '350px', position: 'relative', borderRadius: '1rem', overflow: 'hidden' }}>
           <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="modal-map-link">
             Open in Maps <span style={{ fontSize: '10px' }}>↗</span>
           </a>
