@@ -248,6 +248,9 @@ const CSS_STYLES = `
     .nav-links.active {
       display: flex;
     }
+    .nav-actions {
+      gap: 0.5rem !important;
+    }
     .hero-actions {
       flex-direction: column;
       width: 100%;
@@ -1368,16 +1371,16 @@ const BookingModal = ({ isOpen, onClose }) => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="contact" style={{ padding: '6rem 0', background: 'var(--bg-main)' }}>
+  <section id="contact" className="contact" style={{ padding: '4rem 0', background: 'var(--bg-main)' }}>
     <div className="container">
-      <div style={{ background: '#0f172a', borderRadius: 'var(--radius-xl)', padding: '4rem 2rem', boxShadow: 'var(--shadow-xl)', color: 'white' }}>
+      <div style={{ background: '#0f172a', borderRadius: 'var(--radius-xl)', padding: 'clamp(2rem, 5vw, 4rem)', boxShadow: 'var(--shadow-xl)', color: 'white' }}>
         <div className="section-header">
           <div className="badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}>Contact Us</div>
           <h2 style={{ color: 'white' }}>Reach Out & Find Us</h2>
           <p style={{ color: '#cbd5e1' }}>We are always here to help you smile with confidence.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '3rem', alignItems: 'center' }}>
           <ul className="contact-list" style={{ marginBottom: 0 }}>
             <li className="contact-item" style={{ alignItems: 'center' }}>
               <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
@@ -1458,17 +1461,17 @@ const Navbar = ({ onBookClick }) => {
           <Icons.Tooth />
           <span>Srinivasan Toothz Care</span>
         </a>
-        <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
-          {isOpen ? "✕" : "☰"}
-        </button>
         <div className={`nav-links ${isOpen ? 'active' : ''}`}>
           <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#team" onClick={() => setIsOpen(false)}>Our Team</a>
           <a href="#contact" onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 500, color: 'var(--primary)', fontFamily: 'inherit' }}>Contact</a>
         </div>
-        <div style={{ order: 4 }}>
-          <button onClick={onBookClick} className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}>
+        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem', order: 3 }}>
+          <button onClick={onBookClick} className="btn btn-primary" style={{ padding: '0.6rem 1rem', fontSize: '0.9rem' }}>
             Book now
+          </button>
+          <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu" style={{ order: 4, margin: 0 }}>
+            {isOpen ? "✕" : "☰"}
           </button>
         </div>
       </nav>

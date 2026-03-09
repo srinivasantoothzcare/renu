@@ -918,14 +918,14 @@ const BookingModal = ({ isOpen, onClose }) => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="contact" style={{ padding: '5rem 0', background: 'white' }}>
+  <section id="contact" className="contact" style={{ padding: '4rem 0', background: 'white' }}>
     <div className="container">
-      <div style={{ background: '#0f172a', borderRadius: '1.5rem', padding: '3rem', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', color: 'white' }}>
+      <div style={{ background: '#0f172a', borderRadius: '1.5rem', padding: 'clamp(2rem, 5vw, 4rem)', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', color: 'white' }}>
         <div className="section-title">
           <h2 style={{ color: 'white' }}>Contact & Location</h2>
           <p style={{ color: '#cbd5e1' }}>Get in touch with us for your dental needs.</p>
         </div>
-        <div className="location-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center' }}>
+        <div className="location-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '3rem', alignItems: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div className="modal-info-item">
               <div className="modal-info-icon" style={{ background: 'rgba(14, 165, 233, 0.1)', color: '#0ea5e9' }}><Icons.MapPin /></div>
