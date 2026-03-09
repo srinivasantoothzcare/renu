@@ -383,6 +383,174 @@ const CSS_STYLES = `
       padding: 3rem 0;
     }
   }
+
+  /* Booking Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .modal-overlay.open .modal-content {
+    transform: translateY(0);
+  }
+
+  .modal-close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--text-main);
+    transition: background 0.3s;
+  }
+
+  .modal-close-icon:hover {
+    background: #e2e8f0;
+  }
+
+  .modal-contact {
+    background: #0f172a;
+    color: white;
+    padding: 2.5rem;
+  }
+
+  .modal-contact h3 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .modal-info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-info-icon {
+    color: var(--primary);
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-sizing: content-box;
+  }
+
+  .modal-info-content h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: white;
+  }
+
+  .modal-info-content p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .modal-map {
+    margin-top: 2rem;
+    height: 150px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .modal-map-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: white;
+    color: var(--primary);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    z-index: 5;
+  }
+
+  .modal-form-area {
+    padding: 2.5rem;
+    background: white;
+  }
+
+  .modal-form-area h2 {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-form-area > p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .modal-form-area .form-group input, 
+  .modal-form-area .form-group select {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+
+  .modal-form-area .submit-btn {
+    background: #0f172a;
+  }
+  .modal-form-area .submit-btn:hover {
+    background: #1e293b;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      grid-template-columns: 1fr;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  }
 `;
 
 /**
@@ -413,6 +581,29 @@ const Icons = {
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
       <line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
     </svg>
+  ),
+  MapPin: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  ),
+  Phone: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ),
+  Mail: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  ),
+  X: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
   )
 };
 
@@ -420,7 +611,7 @@ const Icons = {
  * COMPONENTS
  */
 
-const Navbar = () => (
+const Navbar = ({ onBookClick }) => (
   <nav>
     <div className="container nav-content">
       <a href="#" className="logo">
@@ -430,14 +621,13 @@ const Navbar = () => (
       <div className="nav-links">
         <a href="#services">Services</a>
         <a href="#testimonials">Testimonials</a>
-        <a href="#location">Find Us</a>
-        <a href="#contact" className="cta-btn" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Book Now</a>
+        <button onClick={onBookClick} className="cta-btn" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', border: 'none', cursor: 'pointer' }}>Book Now</button>
       </div>
     </div>
   </nav>
 );
 
-const Hero = () => (
+const Hero = ({ onBookClick }) => (
   <section className="hero">
     <div className="container">
       <div className="hero-text">
@@ -448,7 +638,7 @@ const Hero = () => (
         </span>
         <h1>Srinivasan Toothz Care</h1>
         <p>Experience world-class dental services in a comfortable, modern environment. We prioritize your health and confidence.</p>
-        <a href="#contact" className="cta-btn">Book Your Appointment</a>
+        <button onClick={onBookClick} className="cta-btn" style={{ border: 'none', cursor: 'pointer' }}>Book Your Appointment</button>
       </div>
     </div>
   </section>
@@ -513,44 +703,23 @@ const Testimonials = () => {
   );
 };
 
-const Location = () => (
-  <section id="location">
-    <div className="container">
-      <div className="section-title">
-        <h2>Visit Our Clinic</h2>
-        <p>Conveniently located in the heart of the city.</p>
-      </div>
-      <div className="location-container">
-        <div className="map-wrapper">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215267101155!2d-73.985428!3d40.748817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1625000000000!5m2!1sen!2sus"
-            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
-          </iframe>
-        </div>
-        <div>
-          <ul className="info-list">
-            <li className="info-item"><b>Address:</b> No: 5, PETTAI ROAD, THIRUNALLAR - 609 607</li>
-            <li className="info-item"><b>Phone:</b> +91 95666 01261, +91 87781 44471</li>
-            <li className="info-item"><b>Email:</b> srinivasantooothzcare@gmail.com</li>
-            <li className="info-item"><b>Hours:</b> Mon-Fri: 8am - 6pm<br />Sat: 9am - 2pm</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const BookingForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', date: '', service: 'General' });
+const BookingModal = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General Checkup' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSubmitted(false);
+      setFormData({ name: '', phone: '', service: 'General Checkup' });
+      setErrors({});
+    }
+  }, [isOpen]);
 
   const validate = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Name is required';
-    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Valid email required';
     if (!formData.phone) newErrors.phone = 'Phone number is required';
-    if (!formData.date) newErrors.date = 'Date is required';
     return newErrors;
   };
 
@@ -566,77 +735,102 @@ const BookingForm = () => {
   };
 
   return (
-    <section id="contact" className="contact">
-      <div className="container">
-        <div className="section-title">
-          <h2>Ready for Your Best Smile?</h2>
-          <p>Book your appointment online in seconds.</p>
-        </div>
-        {submitted ? (
-          <div className="booking-form" style={{ textAlign: 'center' }}>
-            <h3 style={{ color: 'var(--primary)', marginBottom: '1rem' }}>Booking Confirmed!</h3>
-            <p>Thank you, {formData.name}. We'll contact you shortly at {formData.phone} to confirm your appointment on {formData.date}.</p>
-            <button className="cta-btn" onClick={() => setSubmitted(false)} style={{ marginTop: '2rem', border: 'none' }}>Book Another</button>
+    <div className={`modal-overlay ${isOpen ? 'open' : ''}`} onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <button className="modal-close-icon" onClick={onClose} aria-label="Close modal">
+          <Icons.X />
+        </button>
+
+        <div className="modal-contact">
+          <h3>Contact Details</h3>
+
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.MapPin /></div>
+            <div className="modal-info-content">
+              <h4>Location</h4>
+              <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+            </div>
           </div>
-        ) : (
-          <form className="booking-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Full Name</label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="John Doe"
-              />
-              {errors.name && <span className="error-text">{errors.name}</span>}
+
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.Phone /></div>
+            <div className="modal-info-content">
+              <h4>Phone</h4>
+              <p>+91 95666 01261<br />+91 87781 44471</p>
             </div>
-            <div className="form-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="john@example.com"
-              />
-              {errors.email && <span className="error-text">{errors.email}</span>}
+          </div>
+
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.Mail /></div>
+            <div className="modal-info-content">
+              <h4>Email</h4>
+              <p>srinivasantooothzcare@gmail.com</p>
             </div>
-            <div className="form-group">
-              <label>Phone Number</label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="(555) 000-0000"
-              />
-              {errors.phone && <span className="error-text">{errors.phone}</span>}
+          </div>
+
+          <div className="modal-map">
+            <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="modal-map-link">
+              Open in Maps <span style={{ fontSize: '10px' }}>↗</span>
+            </a>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.836855111162!2d79.7915525!3d10.9472305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a553fa6b5107051%3A0xc3bbaebe1afb8807!2sThirunallar%2C%20Puducherry!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+              width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+        <div className="modal-form-area">
+          <h2>Book an Appointment</h2>
+          <p>We will get back to you to confirm your appointment details.</p>
+
+          {submitted ? (
+            <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+              <h3 style={{ color: 'var(--secondary)', marginBottom: '1rem' }}>Booking Request Sent!</h3>
+              <p>Thank you, {formData.name}. We will contact you at {formData.phone} shortly.</p>
+              <button className="cta-btn" onClick={() => setSubmitted(false)} style={{ marginTop: '2rem', border: 'none', width: '100%', cursor: 'pointer' }}>Book Another</button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          ) : (
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Preferred Date</label>
+                <label>Full Name</label>
                 <input
-                  type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe"
                 />
-                {errors.date && <span className="error-text">{errors.date}</span>}
+                {errors.name && <span className="error-text">{errors.name}</span>}
               </div>
+
               <div className="form-group">
-                <label>Service Type</label>
+                <label>Phone Number</label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="+91 00000 00000"
+                />
+                {errors.phone && <span className="error-text">{errors.phone}</span>}
+              </div>
+
+              <div className="form-group">
+                <label>Service Required</label>
                 <select value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })}>
-                  <option>General</option>
-                  <option>Whitening</option>
+                  <option>General Checkup</option>
+                  <option>Teeth Whitening</option>
                   <option>Orthodontics</option>
-                  <option>Implants</option>
-                  <option>Rehabilitation</option>
-                  <option>Emergency</option>
+                  <option>Dental Implants</option>
+                  <option>Full Mouth Rehabilitation</option>
+                  <option>Emergency Care</option>
                 </select>
               </div>
-            </div>
-            <button type="submit" className="submit-btn" style={{ marginTop: '1rem' }}>Confirm Booking</button>
-          </form>
-        )}
+
+              <button type="submit" className="submit-btn" style={{ marginTop: '1.5rem', width: '100%', cursor: 'pointer', padding: '1rem', border: 'none', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.1rem', color: 'white' }}>Submit Request</button>
+            </form>
+          )}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
@@ -653,6 +847,8 @@ const Footer = () => (
 );
 
 export default function DentalApp() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   // Inject CSS on Mount
   useEffect(() => {
     const styleTag = document.createElement("style");
@@ -663,12 +859,11 @@ export default function DentalApp() {
 
   return (
     <div className="app-wrapper">
-      <Navbar />
-      <Hero />
+      <Navbar onBookClick={() => setIsBookingOpen(true)} />
+      <Hero onBookClick={() => setIsBookingOpen(true)} />
       <Services />
       <Testimonials />
-      <Location />
-      <BookingForm />
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
       <Footer />
     </div>
   );
