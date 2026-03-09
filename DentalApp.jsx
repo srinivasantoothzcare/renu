@@ -746,7 +746,8 @@ const BookingModal = ({ isOpen, onClose }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true);
-      const message = `🦷 New Patient Details 🦷\n🦷 Name: ${formData.name}\n🦷 Age: ${formData.age}\n🦷 Sex: ${formData.sex}\n🦷 Address: ${formData.address}\n🦷 Contact no: ${formData.contact_no}\n🦷 Complaint: ${formData.complaint}\n🦷 Previous Medical History: ${formData.medical_history || 'None'}\n🦷 Previous Dental History: ${formData.dental_history || 'None'}`;
+      const tooth = "\u{1F9B7}";
+      const message = `${tooth} New Patient Details ${tooth}\n${tooth} Name: ${formData.name}\n${tooth} Age: ${formData.age}\n${tooth} Sex: ${formData.sex}\n${tooth} Address: ${formData.address}\n${tooth} Contact no: ${formData.contact_no}\n${tooth} Complaint: ${formData.complaint}\n${tooth} Previous Medical History: ${formData.medical_history || 'None'}\n${tooth} Previous Dental History: ${formData.dental_history || 'None'}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     } else {
@@ -825,39 +826,39 @@ const BookingModal = ({ isOpen, onClose }) => {
                   {errors.name && <span className="error-text">{errors.name}</span>}
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Age</label>
-                    <input
-                      type="number"
-                      value={formData.age}
-                      onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                      placeholder="30"
-                      required
-                    />
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Sex</label>
-                    <select required value={formData.sex} onChange={(e) => setFormData({ ...formData, sex: e.target.value })}>
-                      <option value="" disabled>Select</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Contact no:</label>
+                  <input
+                    type="tel"
+                    value={formData.contact_no}
+                    onChange={(e) => setFormData({ ...formData, contact_no: e.target.value })}
+                    placeholder="+91 00000 00000"
+                    required
+                  />
+                  {errors.contact_no && <span className="error-text">{errors.contact_no}</span>}
                 </div>
               </div>
 
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Contact no:</label>
-                <input
-                  type="tel"
-                  value={formData.contact_no}
-                  onChange={(e) => setFormData({ ...formData, contact_no: e.target.value })}
-                  placeholder="+91 00000 00000"
-                  required
-                />
-                {errors.contact_no && <span className="error-text">{errors.contact_no}</span>}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Age</label>
+                  <input
+                    type="number"
+                    value={formData.age}
+                    onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                    placeholder="30"
+                    required
+                  />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Sex</label>
+                  <select required value={formData.sex} onChange={(e) => setFormData({ ...formData, sex: e.target.value })}>
+                    <option value="" disabled>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
 
               <div className="form-group" style={{ marginBottom: 0 }}>

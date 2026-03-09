@@ -1239,7 +1239,8 @@ const BookingModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (formData.name && formData.contact_no) {
       setSubmitted(true);
-      const message = `🦷 New Patient Details 🦷\n🦷 Name: ${formData.name}\n🦷 Age: ${formData.age}\n🦷 Sex: ${formData.sex}\n🦷 Address: ${formData.address}\n🦷 Contact no: ${formData.contact_no}\n🦷 Complaint: ${formData.complaint}\n🦷 Previous Medical History: ${formData.medical_history || 'None'}\n🦷 Previous Dental History: ${formData.dental_history || 'None'}`;
+      const tooth = "\u{1F9B7}";
+      const message = `${tooth} New Patient Details ${tooth}\n${tooth} Name: ${formData.name}\n${tooth} Age: ${formData.age}\n${tooth} Sex: ${formData.sex}\n${tooth} Address: ${formData.address}\n${tooth} Contact no: ${formData.contact_no}\n${tooth} Complaint: ${formData.complaint}\n${tooth} Previous Medical History: ${formData.medical_history || 'None'}\n${tooth} Previous Dental History: ${formData.dental_history || 'None'}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     }
@@ -1301,34 +1302,34 @@ const BookingModal = ({ isOpen, onClose }) => {
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-              <div className="grid-2">
+              <div className="grid-2" style={{ gap: '1rem' }}>
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label>Name</label>
                   <input type="text" className="form-control" placeholder="John Doe" required
                     value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                 </div>
-                <div className="grid-2" style={{ gap: '0.5rem' }}>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Age</label>
-                    <input type="number" className="form-control" placeholder="30" required
-                      value={formData.age} onChange={e => setFormData({ ...formData, age: e.target.value })} />
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Sex</label>
-                    <select className="form-control" required value={formData.sex} onChange={e => setFormData({ ...formData, sex: e.target.value })}>
-                      <option value="" disabled>Select</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Contact no:</label>
+                  <input type="tel" className="form-control" placeholder="+91 00000 00000" required
+                    value={formData.contact_no} onChange={e => setFormData({ ...formData, contact_no: e.target.value })} />
                 </div>
               </div>
 
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Contact no:</label>
-                <input type="tel" className="form-control" placeholder="+91 00000 00000" required
-                  value={formData.contact_no} onChange={e => setFormData({ ...formData, contact_no: e.target.value })} />
+              <div className="grid-2" style={{ gap: '1rem' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Age</label>
+                  <input type="number" className="form-control" placeholder="30" required
+                    value={formData.age} onChange={e => setFormData({ ...formData, age: e.target.value })} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Sex</label>
+                  <select className="form-control" required value={formData.sex} onChange={e => setFormData({ ...formData, sex: e.target.value })}>
+                    <option value="" disabled>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
 
               <div className="form-group" style={{ marginBottom: 0 }}>
@@ -1362,7 +1363,7 @@ const BookingModal = ({ isOpen, onClose }) => {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
