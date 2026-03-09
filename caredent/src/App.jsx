@@ -1368,35 +1368,35 @@ const BookingModal = ({ isOpen, onClose }) => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="contact" style={{ padding: '6rem 0', background: 'var(--surface)' }}>
+  <section id="contact" className="contact" style={{ padding: '6rem 0', background: '#0f172a', color: 'white' }}>
     <div className="container">
       <div className="section-header">
-        <div className="badge">Contact Us</div>
-        <h2>Reach Out & Find Us</h2>
-        <p>We are always here to help you smile with confidence.</p>
+        <div className="badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'white' }}>Contact Us</div>
+        <h2 style={{ color: 'white' }}>Reach Out & Find Us</h2>
+        <p style={{ color: '#cbd5e1' }}>We are always here to help you smile with confidence.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
         <ul className="contact-list" style={{ marginBottom: 0 }}>
           <li className="contact-item" style={{ alignItems: 'center' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.1)' }}><Icons.MapPin /></div>
+            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
             <div className="contact-text">
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
-              <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
+              <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
             </div>
           </li>
           <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.1)' }}><Icons.Phone /></div>
+            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Phone /></div>
             <div className="contact-text">
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Phone</h4>
-              <p>+91 95666 01261<br />+91 87781 44471</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Phone</h4>
+              <p style={{ color: '#cbd5e1' }}>+91 95666 01261<br />+91 87781 44471</p>
             </div>
           </li>
           <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
-            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.1)' }}><Icons.Mail /></div>
+            <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.Mail /></div>
             <div className="contact-text">
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Email</h4>
-              <p>srinivasantooothzcare@gmail.com</p>
+              <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Email</h4>
+              <p style={{ color: '#cbd5e1' }}>srinivasantooothzcare@gmail.com</p>
             </div>
           </li>
         </ul>
