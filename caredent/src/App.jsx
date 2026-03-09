@@ -1386,10 +1386,7 @@ const ContactSection = () => (
               <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
               <div className="contact-text">
                 <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
-                <p style={{ color: '#cbd5e1', marginBottom: '1rem' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
-                <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ display: 'inline-block', padding: '0.5rem 1rem', fontSize: '0.875rem', borderRadius: '0.5rem', textDecoration: 'none', color: 'white', fontWeight: 500, marginTop: '0.5rem' }}>
-                  Get Directions <span style={{ fontSize: '10px', marginLeft: '0.25rem' }}>↗</span>
-                </a>
+                <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
               </div>
             </li>
             <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
@@ -1408,11 +1405,16 @@ const ContactSection = () => (
             </li>
           </ul>
 
-          <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', height: '400px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
-              width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
-            </iframe>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', height: '400px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d244.84429997376668!2d79.7884546!3d10.924886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a551700063aa563%3A0x883030681f8526d3!2sSRINIVASAN%20TOOTHZ%20CARE!5e0!3m2!1sen!2sin!4v1772122205890!5m2!1sen!2sin"
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem', fontSize: '1rem', borderRadius: 'var(--radius-lg)', textDecoration: 'none', color: 'white', fontWeight: 600, width: '100%', textAlign: 'center', boxShadow: '0 4px 15px rgba(14, 165, 233, 0.4)' }}>
+              Get Directions to Clinic <span style={{ fontSize: '14px', marginLeft: '0.5rem' }}>📍</span>
+            </a>
           </div>
         </div>
       </div>
