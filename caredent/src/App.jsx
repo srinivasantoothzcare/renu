@@ -1239,24 +1239,12 @@ const BookingModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (formData.name && formData.contact_no) {
       setSubmitted(true);
-      // WhatsApp Web encoding absolute fallback: We manually construct the exact URL-encoded UTF-8 bytes
-      // for the Tooth emoji (%F0%9F%A6%B7) into the final string, completely bypassing any file-level interpretation.
-      const tooth = '%F0%9F%A6%B7';
-      const message = `${tooth} New Patient Details ${tooth}
-${tooth} Name: ${formData.name}
-${tooth} Age: ${formData.age}
-${tooth} Sex: ${formData.sex}
-${tooth} Address: ${formData.address}
-${tooth} Contact no: ${formData.contact_no}
-${tooth} Complaint: ${formData.complaint}
-${tooth} Previous Medical History: ${formData.medical_history || 'None'}
-${tooth} Previous Dental History: ${formData.dental_history || 'None'}`;
+      // Since WhatsApp Web encoding causes severe corruption globally during the Vite build,
+      // we are switching to 100% foolproof ASCII formatting. WhatsApp natively converts text wrapped in * to bold.
+      const message = `*New Patient Details*\n- Name: ${formData.name}\n- Age: ${formData.age}\n- Sex: ${formData.sex}\n- Address: ${formData.address}\n- Contact no: ${formData.contact_no}\n- Complaint: ${formData.complaint}\n- Medical History: ${formData.medical_history || 'None'}\n- Dental History: ${formData.dental_history || 'None'}`;
 
-      // We do NOT use encodeURIComponent on the entire message because that would double-encode our % signs
-      // Instead, we just replace the spaces and newlines manually for a valid URL
-      const finalUrlStr = message.replace(/ /g, '%20').replace(/\n/g, '%0A');
-
-      window.open(`https://wa.me/918344090472?text=${finalUrlStr}`, '_blank');
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     }
   };
 
