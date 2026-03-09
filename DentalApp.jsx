@@ -959,7 +959,7 @@ const ContactSection = () => (
                 width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
               </iframe>
             </div>
-            <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="cta-btn" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem', fontSize: '1rem', borderRadius: '1rem', textDecoration: 'none', color: 'white', fontWeight: 600, width: '100%', textAlign: 'center', boxShadow: '0 4px 15px rgba(14, 165, 233, 0.4)', border: 'none' }}>
+            <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem', fontSize: '1rem', borderRadius: '1rem', textDecoration: 'none', background: 'white', color: 'var(--primary)', fontWeight: 700, width: '100%', textAlign: 'center', boxShadow: '0 4px 15px rgba(255, 255, 255, 0.2)', border: 'none', transition: 'all 0.3s ease' }}>
               Get Directions to Clinic <span style={{ fontSize: '14px', marginLeft: '0.5rem' }}>📍</span>
             </a>
           </div>
