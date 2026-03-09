@@ -1239,12 +1239,15 @@ const BookingModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (formData.name && formData.contact_no) {
       setSubmitted(true);
-      // Use a safe placeholder to completely bypass file encoding corruptions during build
-      const message = `[T] New Patient Details [T]\n[T] Name: ${formData.name}\n[T] Age: ${formData.age}\n[T] Sex: ${formData.sex}\n[T] Address: ${formData.address}\n[T] Contact no: ${formData.contact_no}\n[T] Complaint: ${formData.complaint}\n[T] Previous Medical History: ${formData.medical_history || 'None'}\n[T] Previous Dental History: ${formData.dental_history || 'None'}`;
+      // Using highly universal Unicode 6.0 emojis (2010) with safe hex escapes to guarantee rendering and completely avoid file encoding issues.
+      // \u2728 = Sparkles ✨
+      // \u2705 = Check Mark Button ✅
+      const titleIcon = '\u2728';
+      const itemIcon = '\u2705';
 
-      // Encode the message, then replace the encoded placeholder with the exact URL-encoded UTF-8 bytes for the Tooth emoji (%F0%9F%A6%B7)
-      const encodedMessage = encodeURIComponent(message).replace(/%5BT%5D/g, '%F0%9F%A6%B7');
+      const message = `${titleIcon} New Patient Details ${titleIcon}\n${itemIcon} Name: ${formData.name}\n${itemIcon} Age: ${formData.age}\n${itemIcon} Sex: ${formData.sex}\n${itemIcon} Address: ${formData.address}\n${itemIcon} Contact no: ${formData.contact_no}\n${itemIcon} Complaint: ${formData.complaint}\n${itemIcon} Previous Medical History: ${formData.medical_history || 'None'}\n${itemIcon} Previous Dental History: ${formData.dental_history || 'None'}`;
 
+      const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     }
   };
