@@ -1221,6 +1221,9 @@ const BookingModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (formData.name && formData.phone) {
       setSubmitted(true);
+      const message = `🦷 New Booking Request 🦷\n🦷 Name: ${formData.name}\n🦷 Phone: ${formData.phone}\n🦷 Service: ${formData.service}`;
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     }
   };
 

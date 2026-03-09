@@ -728,7 +728,9 @@ const BookingModal = ({ isOpen, onClose }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true);
-      console.log('Form Submitted:', formData);
+      const message = `🦷 New Booking Request 🦷\n🦷 Name: ${formData.name}\n🦷 Phone: ${formData.phone}\n🦷 Service: ${formData.service}`;
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     } else {
       setErrors(validationErrors);
     }
