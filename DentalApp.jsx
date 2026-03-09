@@ -716,6 +716,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -741,11 +742,37 @@ const BookingModal = ({ isOpen, onClose }) => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
+      setIsSubmitting(true);
+
+      // --- GOOGLE SHEETS INTEGRATION ---
+      // 1. Replace this URL with the one you get from Google Apps Script after deploying
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPhjvKQDhFYOCMJtnrTI2oyfnaZ12oCZVJMdlg3wRE35sG92rl2x7Aw4IBiCGz98x5/exec";
+
+      if (SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+        try {
+          const formParams = new URLSearchParams(formData);
+          formParams.append("timestamp", new Date().toISOString());
+
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // no-cors is used to bypass CORS restrictions when we don't need to read the response
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formParams.toString()
+          });
+        } catch (err) {
+          console.error("Failed to save to Google Sheets:", err);
+        }
+      }
+
       setSubmitted(true);
+      setIsSubmitting(false);
+
       // Since WhatsApp Web encoding causes severe corruption globally during the Vite build,
       // we are switching to 100% foolproof ASCII formatting. WhatsApp natively converts text wrapped in * to bold.
       const message = `*New Patient Details*\n- Name: ${formData.name}\n- Age: ${formData.age}\n- Sex: ${formData.sex}\n- Address: ${formData.address}\n- Contact no: ${formData.contact_no}\n- Complaint: ${formData.complaint}\n- Medical History: ${formData.medical_history || 'None'}\n- Dental History: ${formData.dental_history || 'None'}`;
@@ -905,7 +932,9 @@ const BookingModal = ({ isOpen, onClose }) => {
                 />
               </div>
 
-              <button type="submit" className="submit-btn" style={{ marginTop: '0.5rem', width: '100%', cursor: 'pointer', padding: '1rem', border: 'none', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.1rem', color: 'white' }}>Submit Details</button>
+              <button type="submit" disabled={isSubmitting} className="submit-btn" style={{ marginTop: '0.5rem', width: '100%', cursor: isSubmitting ? 'not-allowed' : 'pointer', padding: '1rem', border: 'none', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.1rem', color: 'white', opacity: isSubmitting ? 0.7 : 1 }}>
+                {isSubmitting ? 'Saving Details...' : 'Submit Details'}
+              </button>
             </form>
           )}
         </div>
