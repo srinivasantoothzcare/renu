@@ -677,9 +677,22 @@ const Services = () => {
 
 const Testimonials = () => {
   const reviews = [
-    { name: "Sarah Johnson", rating: 5, text: "The best dental experience I've ever had. The staff is professional and the office is beautiful!" },
-    { name: "Michael Chen", rating: 5, text: "Very gentle and thorough. They explained everything clearly and made me feel at ease." },
-    { name: "Emily Rodriguez", rating: 4, text: "Excellent service and results. My teeth have never looked better after the whitening treatment." }
+    { name: "Dr Shanmugapriya", rating: 5, text: "Very talented and kind doctor… treatment provided with affordable price…comfortable to visit in all weekends…Thank you so much Dr. Renuka Devi ❤️…" },
+    { name: "Suppriya Ayyappan", rating: 5, text: "Best clinic and treatment provided is very good...👍🏻" },
+    { name: "Bhumiga Srinivasan", rating: 5, text: "Best dental clinic with good and spacious infrastructure. Dentist is highly skilled and updated with new trends. Patient friendly and highly recommended in Thirunallar." },
+    { name: "Saravanan SP", rating: 5, text: "Great experience! The dentist was very gentle and the staff was friendly. Highly recommend" },
+    { name: "lakshmi prabha", rating: 5, text: "This is a good clinic with great service, newly started the treatment is very satisfying. I did tooth filling." },
+    { name: "Krishnan S", rating: 5, text: "Best treatment and great output experienced doctor on the whole very great work done" },
+    { name: "ganesh manikandan", rating: 5, text: "Treatment was very good, excellent service, Good patient care 👍 👍 …" },
+    { name: "ajith karan", rating: 5, text: "Treatment was very good, homely environment excellent service and painless treatment experience" },
+    { name: "Abdur Rahman", rating: 5, text: "She was very intersting and geniune in way she explain the treatment protocol to the patient" },
+    { name: "naren dran", rating: 5, text: "Affordable dental clinic, patient friendly doctor, had a positive vibe" },
+    { name: "Laugh And Smile Dental Clinic", rating: 5, text: "Dr.Renuga takes atmost care of the patients and treat her patients very kindly." },
+    { name: "Anusiya Anusiya", rating: 5, text: "Cozy and friendly environment with superb service and the hygienist was extremely personable and very gentle" },
+    { name: "jawahar babu", rating: 5, text: "Best in town!!! Treated well . Explained the procedure next and clean. Well equipped." },
+    { name: "gousalya sitharthan", rating: 5, text: "wow friendly in nature.." },
+    { name: "A.Saranya", rating: 5, text: "Patient friendly doctor with affordable dental Clinic. Clinic is spacious, clean and also washroom facilities." },
+    { name: "Pradheep Selvapandian", rating: 5, text: "good thoot care clinic in thirunallar" }
   ];
 
   return (
