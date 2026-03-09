@@ -1207,21 +1207,39 @@ const Testimonials = () => {
 };
 
 const BookingModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General Checkup' });
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    sex: '',
+    address: '',
+    contact_no: '',
+    complaint: '',
+    medical_history: '',
+    dental_history: ''
+  });
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setSubmitted(false);
-      setFormData({ name: '', phone: '', service: 'General Checkup' });
+      setFormData({
+        name: '',
+        age: '',
+        sex: '',
+        address: '',
+        contact_no: '',
+        complaint: '',
+        medical_history: '',
+        dental_history: ''
+      });
     }
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.name && formData.phone) {
+    if (formData.name && formData.contact_no) {
       setSubmitted(true);
-      const message = `🦷 New Booking Request 🦷\n🦷 Name: ${formData.name}\n🦷 Phone: ${formData.phone}\n🦷 Service: ${formData.service}`;
+      const message = `🦷 New Patient Details 🦷\n🦷 Name: ${formData.name}\n🦷 Age: ${formData.age}\n🦷 Sex: ${formData.sex}\n🦷 Address: ${formData.address}\n🦷 Contact no: ${formData.contact_no}\n🦷 Complaint: ${formData.complaint}\n🦷 Previous Medical History: ${formData.medical_history || 'None'}\n🦷 Previous Dental History: ${formData.dental_history || 'None'}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     }
@@ -1269,47 +1287,80 @@ const BookingModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Right Side: Form */}
-        <div className="booking-form">
-          <h3 className="booking-title">Book an Appointment</h3>
-          <p style={{ marginBottom: '2rem' }}>We will get back to you to confirm your appointment details.</p>
+        <div className="booking-form" style={{ maxHeight: '100%', overflowY: 'auto' }}>
+          <h3 className="booking-title" style={{ fontSize: '1.75rem' }}>Patient Details Form</h3>
+          <p style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>Please provide your details below for a quick and accurate consultation.</p>
 
           {submitted ? (
             <div style={{ padding: '2rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '1rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--secondary)', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Icons.CheckCircle /></div>
-              <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Request Received!</h4>
-              <p>Thank you, {formData.name}. We will call you at {formData.phone} shortly.</p>
-              <button className="btn btn-outline" style={{ marginTop: '1.5rem' }} onClick={() => setSubmitted(false)}>Book Another</button>
+              <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Details Submitted!</h4>
+              <p>Thank you, {formData.name}. We have received your information.</p>
+              <button className="btn btn-outline" style={{ marginTop: '1.5rem' }} onClick={() => setSubmitted(false)}>Fill Another Form</button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Full Name</label>
-                <input type="text" className="form-control" placeholder="John Doe" required
-                  value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+              <div className="grid-2">
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Name</label>
+                  <input type="text" className="form-control" placeholder="John Doe" required
+                    value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                </div>
+                <div className="grid-2" style={{ gap: '0.5rem' }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label>Age</label>
+                    <input type="number" className="form-control" placeholder="30" required
+                      value={formData.age} onChange={e => setFormData({ ...formData, age: e.target.value })} />
+                  </div>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label>Sex</label>
+                    <select className="form-control" required value={formData.sex} onChange={e => setFormData({ ...formData, sex: e.target.value })}>
+                      <option value="" disabled>Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
               </div>
-              <div className="form-group">
-                <label>Phone Number</label>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Contact no:</label>
                 <input type="tel" className="form-control" placeholder="+91 00000 00000" required
-                  value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                  value={formData.contact_no} onChange={e => setFormData({ ...formData, contact_no: e.target.value })} />
               </div>
-              <div className="form-group">
-                <label>Service Required</label>
-                <select className="form-control" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
-                  <option>General Checkup</option>
-                  <option>Teeth Whitening</option>
-                  <option>Implants</option>
-                  <option>Rehabilitation</option>
-                  <option>Urgent Care</option>
-                </select>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Address</label>
+                <input type="text" className="form-control" placeholder="123 Street, City" required
+                  value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} />
               </div>
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}>
-                Submit Request
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Complaint</label>
+                <input type="text" className="form-control" placeholder="What brings you in today?" required
+                  value={formData.complaint} onChange={e => setFormData({ ...formData, complaint: e.target.value })} />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Previous Medical History</label>
+                <input type="text" className="form-control" placeholder="(e.g., Diabetes, Hypertension)"
+                  value={formData.medical_history} onChange={e => setFormData({ ...formData, medical_history: e.target.value })} />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Previous Dental History</label>
+                <input type="text" className="form-control" placeholder="(e.g., Braces, Root Canal)"
+                  value={formData.dental_history} onChange={e => setFormData({ ...formData, dental_history: e.target.value })} />
+              </div>
+
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '0.5rem', padding: '1rem' }}>
+                Submit Details
               </button>
             </form>
           )}
         </div>
-
       </div>
     </div>
   );

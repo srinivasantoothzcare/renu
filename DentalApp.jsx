@@ -704,14 +704,32 @@ const Testimonials = () => {
 };
 
 const BookingModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({ name: '', phone: '', service: 'General Checkup' });
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    sex: '',
+    address: '',
+    contact_no: '',
+    complaint: '',
+    medical_history: '',
+    dental_history: ''
+  });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setSubmitted(false);
-      setFormData({ name: '', phone: '', service: 'General Checkup' });
+      setFormData({
+        name: '',
+        age: '',
+        sex: '',
+        address: '',
+        contact_no: '',
+        complaint: '',
+        medical_history: '',
+        dental_history: ''
+      });
       setErrors({});
     }
   }, [isOpen]);
@@ -719,7 +737,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   const validate = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Name is required';
-    if (!formData.phone) newErrors.phone = 'Phone number is required';
+    if (!formData.contact_no) newErrors.contact_no = 'Contact number is required';
     return newErrors;
   };
 
@@ -728,7 +746,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       setSubmitted(true);
-      const message = `🦷 New Booking Request 🦷\n🦷 Name: ${formData.name}\n🦷 Phone: ${formData.phone}\n🦷 Service: ${formData.service}`;
+      const message = `🦷 New Patient Details 🦷\n🦷 Name: ${formData.name}\n🦷 Age: ${formData.age}\n🦷 Sex: ${formData.sex}\n🦷 Address: ${formData.address}\n🦷 Contact no: ${formData.contact_no}\n🦷 Complaint: ${formData.complaint}\n🦷 Previous Medical History: ${formData.medical_history || 'None'}\n🦷 Previous Dental History: ${formData.dental_history || 'None'}`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
     } else {
@@ -781,53 +799,110 @@ const BookingModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <div className="modal-form-area">
-          <h2>Book an Appointment</h2>
-          <p>We will get back to you to confirm your appointment details.</p>
+        <div className="modal-form-area" style={{ maxHeight: '100%', overflowY: 'auto' }}>
+          <h2 style={{ fontSize: '1.75rem' }}>Patient Details Form</h2>
+          <p style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>Please provide your details below for a quick and accurate consultation.</p>
 
           {submitted ? (
             <div style={{ textAlign: 'center', padding: '2rem 0' }}>
-              <h3 style={{ color: 'var(--secondary)', marginBottom: '1rem' }}>Booking Request Sent!</h3>
-              <p>Thank you, {formData.name}. We will contact you at {formData.phone} shortly.</p>
-              <button className="cta-btn" onClick={() => setSubmitted(false)} style={{ marginTop: '2rem', border: 'none', width: '100%', cursor: 'pointer' }}>Book Another</button>
+              <h3 style={{ color: 'var(--secondary)', marginBottom: '1rem' }}>Details Submitted!</h3>
+              <p>Thank you, {formData.name}. We have received your information.</p>
+              <button className="cta-btn" onClick={() => setSubmitted(false)} style={{ marginTop: '2rem', border: 'none', width: '100%', cursor: 'pointer' }}>Fill Another Form</button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="John Doe"
-                />
-                {errors.name && <span className="error-text">{errors.name}</span>}
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="John Doe"
+                    required
+                  />
+                  {errors.name && <span className="error-text">{errors.name}</span>}
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label>Age</label>
+                    <input
+                      type="number"
+                      value={formData.age}
+                      onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                      placeholder="30"
+                      required
+                    />
+                  </div>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label>Sex</label>
+                    <select required value={formData.sex} onChange={(e) => setFormData({ ...formData, sex: e.target.value })}>
+                      <option value="" disabled>Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
-              <div className="form-group">
-                <label>Phone Number</label>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Contact no:</label>
                 <input
                   type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  value={formData.contact_no}
+                  onChange={(e) => setFormData({ ...formData, contact_no: e.target.value })}
                   placeholder="+91 00000 00000"
+                  required
                 />
-                {errors.phone && <span className="error-text">{errors.phone}</span>}
+                {errors.contact_no && <span className="error-text">{errors.contact_no}</span>}
               </div>
 
-              <div className="form-group">
-                <label>Service Required</label>
-                <select value={formData.service} onChange={(e) => setFormData({ ...formData, service: e.target.value })}>
-                  <option>General Checkup</option>
-                  <option>Teeth Whitening</option>
-                  <option>Orthodontics</option>
-                  <option>Dental Implants</option>
-                  <option>Full Mouth Rehabilitation</option>
-                  <option>Emergency Care</option>
-                </select>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Address</label>
+                <input
+                  type="text"
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  placeholder="123 Street, City"
+                  required
+                />
               </div>
 
-              <button type="submit" className="submit-btn" style={{ marginTop: '1.5rem', width: '100%', cursor: 'pointer', padding: '1rem', border: 'none', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.1rem', color: 'white' }}>Submit Request</button>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Complaint</label>
+                <input
+                  type="text"
+                  value={formData.complaint}
+                  onChange={(e) => setFormData({ ...formData, complaint: e.target.value })}
+                  placeholder="What brings you in today?"
+                  required
+                />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Previous Medical History</label>
+                <input
+                  type="text"
+                  value={formData.medical_history}
+                  onChange={(e) => setFormData({ ...formData, medical_history: e.target.value })}
+                  placeholder="(e.g., Diabetes, Hypertension)"
+                />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label>Previous Dental History</label>
+                <input
+                  type="text"
+                  value={formData.dental_history}
+                  onChange={(e) => setFormData({ ...formData, dental_history: e.target.value })}
+                  placeholder="(e.g., Braces, Root Canal)"
+                />
+              </div>
+
+              <button type="submit" className="submit-btn" style={{ marginTop: '0.5rem', width: '100%', cursor: 'pointer', padding: '1rem', border: 'none', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.1rem', color: 'white' }}>Submit Details</button>
             </form>
           )}
         </div>
