@@ -1239,16 +1239,24 @@ const BookingModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (formData.name && formData.contact_no) {
       setSubmitted(true);
-      // Using highly universal Unicode 6.0 emojis (2010) with safe hex escapes to guarantee rendering and completely avoid file encoding issues.
-      // \u2728 = Sparkles ✨
-      // \u2705 = Check Mark Button ✅
-      const titleIcon = '\u2728';
-      const itemIcon = '\u2705';
+      // WhatsApp Web encoding absolute fallback: We manually construct the exact URL-encoded UTF-8 bytes
+      // for the Tooth emoji (%F0%9F%A6%B7) into the final string, completely bypassing any file-level interpretation.
+      const tooth = '%F0%9F%A6%B7';
+      const message = `${tooth} New Patient Details ${tooth}
+${tooth} Name: ${formData.name}
+${tooth} Age: ${formData.age}
+${tooth} Sex: ${formData.sex}
+${tooth} Address: ${formData.address}
+${tooth} Contact no: ${formData.contact_no}
+${tooth} Complaint: ${formData.complaint}
+${tooth} Previous Medical History: ${formData.medical_history || 'None'}
+${tooth} Previous Dental History: ${formData.dental_history || 'None'}`;
 
-      const message = `${titleIcon} New Patient Details ${titleIcon}\n${itemIcon} Name: ${formData.name}\n${itemIcon} Age: ${formData.age}\n${itemIcon} Sex: ${formData.sex}\n${itemIcon} Address: ${formData.address}\n${itemIcon} Contact no: ${formData.contact_no}\n${itemIcon} Complaint: ${formData.complaint}\n${itemIcon} Previous Medical History: ${formData.medical_history || 'None'}\n${itemIcon} Previous Dental History: ${formData.dental_history || 'None'}`;
+      // We do NOT use encodeURIComponent on the entire message because that would double-encode our % signs
+      // Instead, we just replace the spaces and newlines manually for a valid URL
+      const finalUrlStr = message.replace(/ /g, '%20').replace(/\n/g, '%0A');
 
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
+      window.open(`https://wa.me/918344090472?text=${finalUrlStr}`, '_blank');
     }
   };
 
