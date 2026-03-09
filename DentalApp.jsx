@@ -754,16 +754,14 @@ const BookingModal = ({ isOpen, onClose }) => {
 
       if (SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_URL_HERE") {
         try {
-          const formParams = new URLSearchParams(formData);
+          const formParams = new FormData();
+          Object.keys(formData).forEach(key => formParams.append(key, formData[key]));
           formParams.append("timestamp", new Date().toISOString());
 
           await fetch(SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors', // no-cors is used to bypass CORS restrictions when we don't need to read the response
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formParams.toString()
+            body: formParams
           });
         } catch (err) {
           console.error("Failed to save to Google Sheets:", err);

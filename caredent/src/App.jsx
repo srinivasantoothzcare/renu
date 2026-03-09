@@ -1218,6 +1218,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     dental_history: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -1235,10 +1236,30 @@ const BookingModal = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.contact_no) {
+      setIsSubmitting(true);
+
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPhjvKQDhFYOCMJtnrTI2oyfnaZ12oCZVJMdlg3wRE35sG92rl2x7Aw4IBiCGz98x5/exec";
+
+      try {
+        const formParams = new FormData();
+        Object.keys(formData).forEach(key => formParams.append(key, formData[key]));
+        formParams.append("timestamp", new Date().toISOString());
+
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formParams
+        });
+      } catch (err) {
+        console.error("Failed to save to Google Sheets:", err);
+      }
+
       setSubmitted(true);
+      setIsSubmitting(false);
+
       // Since WhatsApp Web encoding causes severe corruption globally during the Vite build,
       // we are switching to 100% foolproof ASCII formatting. WhatsApp natively converts text wrapped in * to bold.
       const message = `*New Patient Details*\n- Name: ${formData.name}\n- Age: ${formData.age}\n- Sex: ${formData.sex}\n- Address: ${formData.address}\n- Contact no: ${formData.contact_no}\n- Complaint: ${formData.complaint}\n- Medical History: ${formData.medical_history || 'None'}\n- Dental History: ${formData.dental_history || 'None'}`;
@@ -1358,8 +1379,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                   value={formData.dental_history} onChange={e => setFormData({ ...formData, dental_history: e.target.value })} />
               </div>
 
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '0.5rem', padding: '1rem' }}>
-                Submit Details
+              <button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ width: '100%', marginTop: '0.5rem', padding: '1rem', opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
+                {isSubmitting ? 'Saving Details...' : 'Submit Details'}
               </button>
             </form>
           )}
