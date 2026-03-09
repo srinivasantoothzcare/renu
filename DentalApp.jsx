@@ -790,7 +790,7 @@ const BookingModal = ({ isOpen, onClose }) => {
       const message = `*New Patient Details*\n- Name: ${formData.name}\n- Age: ${formData.age}\n- Sex: ${formData.sex}\n- Address: ${formData.address}\n- Contact no: ${formData.contact_no}\n- Complaint: ${formData.complaint}\n- Medical History: ${formData.medical_history || 'None'}\n- Dental History: ${formData.dental_history || 'None'}`;
 
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/918344090472?text=${encodedMessage}`, '_blank');
+      window.open(`https://wa.me/918778144471?text=${encodedMessage}`, '_blank');
     } else {
       setErrors(validationErrors);
     }
