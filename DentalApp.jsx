@@ -409,9 +409,9 @@ const CSS_STYLES = `
     background: white;
     border-radius: 1.5rem;
     width: 100%;
-    max-width: 900px;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -802,44 +802,6 @@ const BookingModal = ({ isOpen, onClose }) => {
           <Icons.X />
         </button>
 
-        <div className="modal-contact">
-          <h3>Contact Details</h3>
-
-          <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.MapPin /></div>
-            <div className="modal-info-content">
-              <h4>Location</h4>
-              <p>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
-            </div>
-          </div>
-
-          <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.Phone /></div>
-            <div className="modal-info-content">
-              <h4>Phone</h4>
-              <p>+91 95666 01261<br />+91 87781 44471</p>
-            </div>
-          </div>
-
-          <div className="modal-info-item">
-            <div className="modal-info-icon"><Icons.Mail /></div>
-            <div className="modal-info-content">
-              <h4>Email</h4>
-              <p>srinivasantooothzcare@gmail.com</p>
-            </div>
-          </div>
-
-          <div className="modal-map">
-            <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="modal-map-link">
-              Open in Maps <span style={{ fontSize: '10px' }}>↗</span>
-            </a>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.836855111162!2d79.7915525!3d10.9472305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a553fa6b5107051%3A0xc3bbaebe1afb8807!2sThirunallar%2C%20Puducherry!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
-              width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
-            </iframe>
-          </div>
-        </div>
-
         <div className="modal-form-area" style={{ maxHeight: '100%', overflowY: 'auto' }}>
           <h2 style={{ fontSize: '1.75rem' }}>Patient Details Form</h2>
           <p style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>Please provide your details below for a quick and accurate consultation.</p>
@@ -954,6 +916,54 @@ const BookingModal = ({ isOpen, onClose }) => {
   );
 };
 
+const ContactSection = () => (
+  <section id="contact" className="contact" style={{ padding: '5rem 0', background: 'white' }}>
+    <div className="container">
+      <div className="section-title">
+        <h2>Contact & Location</h2>
+        <p>Get in touch with us for your dental needs.</p>
+      </div>
+      <div className="location-container">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.MapPin /></div>
+            <div>
+              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Location</h4>
+              <p style={{ color: 'var(--text-muted)' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+            </div>
+          </div>
+
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.Phone /></div>
+            <div>
+              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Phone</h4>
+              <p style={{ color: 'var(--text-muted)' }}>+91 95666 01261<br />+91 87781 44471</p>
+            </div>
+          </div>
+
+          <div className="modal-info-item">
+            <div className="modal-info-icon"><Icons.Mail /></div>
+            <div>
+              <h4 style={{ color: 'var(--text-main)', marginBottom: '0.25rem' }}>Email</h4>
+              <p style={{ color: 'var(--text-muted)' }}>srinivasantooothzcare@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="map-wrapper" style={{ height: '350px', position: 'relative' }}>
+          <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="modal-map-link">
+            Open in Maps <span style={{ fontSize: '10px' }}>↗</span>
+          </a>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.836855111162!2d79.7915525!3d10.9472305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a553fa6b5107051%3A0xc3bbaebe1afb8807!2sThirunallar%2C%20Puducherry!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+            width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Footer = () => (
   <footer className="footer">
     <div className="container">
@@ -983,6 +993,7 @@ export default function DentalApp() {
       <Hero onBookClick={() => setIsBookingOpen(true)} />
       <Services />
       <Testimonials />
+      <ContactSection />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
       <Footer />
     </div>
