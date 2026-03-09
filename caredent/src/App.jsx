@@ -1383,7 +1383,10 @@ const ContactSection = () => (
               <div className="contact-icon" style={{ background: 'rgba(14, 165, 233, 0.2)', color: '#0ea5e9' }}><Icons.MapPin /></div>
               <div className="contact-text">
                 <h4 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Location</h4>
-                <p style={{ color: '#cbd5e1' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+                <p style={{ color: '#cbd5e1', marginBottom: '1rem' }}>No: 5, PETTAI ROAD,<br />THIRUNALLAR, PETTAI,<br />PUDUCHERRY - 609 607</p>
+                <a href="https://maps.google.com/?q=10.9472305,79.7915525" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ display: 'inline-block', padding: '0.5rem 1rem', fontSize: '0.875rem', borderRadius: '0.5rem', textDecoration: 'none', color: 'white', fontWeight: 500, marginTop: '0.5rem' }}>
+                  Get Directions <span style={{ fontSize: '10px', marginLeft: '0.25rem' }}>↗</span>
+                </a>
               </div>
             </li>
             <li className="contact-item" style={{ alignItems: 'center', marginTop: '2rem' }}>
