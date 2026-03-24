@@ -102,18 +102,20 @@ const CSS_STYLES = `
   }
 
   .shiny-text {
-    color: #b5b5b5a1;
     background: linear-gradient(
       120deg,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.8) 50%,
-      rgba(255, 255, 255, 0) 60%
+      var(--primary) 30%,
+      #38bdf8 50%,
+      var(--primary) 70%
     );
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     display: inline-block;
-    animation: shine 5s linear infinite;
+    font-weight: 800;
+    animation: shine 3s linear infinite;
   }
 
   .shiny-text.disabled {
