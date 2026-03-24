@@ -97,8 +97,54 @@ const CSS_STYLES = `
     border-radius: var(--radius-pill);
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* --- SHINY TEXT ANIMATION --- */
+  }
+
+  .shiny-text {
+    color: #b5b5b5a1;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    animation: shine 5s linear infinite;
+  }
+
+  .shiny-text.disabled {
+    animation: none;
+  }
+
+  @keyframes shine {
+    0% { background-position: 100%; }
+    100% { background-position: -100%; }
+  }
+
+  .hero-badge-shiny {
+    color: var(--secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .hero-badge-shiny .shiny-text {
+    color: var(--secondary);
+    background: linear-gradient(
+      120deg,
+      rgba(14, 165, 233, 0) 40%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(14, 165, 233, 0) 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+`;  text-decoration: none;
     border: none;
     cursor: pointer;
   }
@@ -1034,8 +1080,47 @@ const Icons = {
 };
 
 /**
- * COMPONENTS
+ * UTILITY COMPONENTS
  */
+
+const CountUp = ({ to, duration = 2 }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime = null;
+    const end = parseInt(to);
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
+      
+      // Power2 EaseOut
+      const easeOut = 1 - Math.pow(1 - progress, 2);
+      
+      setCount(Math.floor(easeOut * end));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [to, duration]);
+
+  return <>{count}</>;
+};
+
+const ShinyText = ({ text, disabled = false, speed = 5, className = '', style = {} }) => {
+  return (
+    <span
+      className={`shiny-text ${disabled ? 'disabled' : ''} ${className}`}
+      style={{ animationDuration: `${speed}s`, ...style }}
+    >
+      {text}
+    </span>
+  );
+};
 
 const Hero = ({ onBookClick }) => (
   <section className="hero">
@@ -1065,7 +1150,9 @@ const Hero = ({ onBookClick }) => (
         <div className="floating-card">
           <Icons.CheckCircle />
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)', lineHeight: 1 }}>250+</div>
+            <div style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--primary)', lineHeight: 1 }}>
+              <ShinyText text={<><CountUp to={250} />+</>} />
+            </div>
             <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Happy Patients</div>
           </div>
         </div>
