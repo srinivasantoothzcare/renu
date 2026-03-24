@@ -144,7 +144,9 @@ const CSS_STYLES = `
     -webkit-background-clip: text;
     background-clip: text;
   }
-`;  text-decoration: none;
+  
+  .btn {
+    text-decoration: none;
     border: none;
     cursor: pointer;
   }
